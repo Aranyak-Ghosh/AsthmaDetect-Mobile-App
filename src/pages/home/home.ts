@@ -3,8 +3,6 @@ import { NavController } from "ionic-angular";
 
 import { Diagnostic } from "@ionic-native/diagnostic";
 
-import * as Nonin3230 from "nonin-3230-ble";
-
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
@@ -49,25 +47,12 @@ export class HomePage {
     }
   }
 
+  toggleBluetooth(){
+    this.diagnostics.setBluetoothState(true);
+  }
+
   getData() {
     console.log('Starting Listener');
-    Nonin3230.discover(pulseOximeter => {
-      pulseOximeter.connectAndSetup(error => {
-        if (error) {
-          console.error(error);
-        }
-        let counter = 0;
-        // receive a new measurement every second
-        pulseOximeter.on("data", data => {
-          counter++;
-          console.log(data);
-          this.val = data;
-          // { counter: int, pulseRate: int, oxygenSaturation: int, status: object }
-          // if (counter > 15) {
-          //   pulseOximeter.stopMeasurement(() => console.log('stopped'));
-          // }
-        });
-      });
-    });
+    
   }
 }
