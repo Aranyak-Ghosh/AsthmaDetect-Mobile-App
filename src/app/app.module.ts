@@ -8,7 +8,6 @@ import { Diagnostic } from '@ionic-native/diagnostic'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { NoninProvider } from '../providers/nonin/nonin';
 import { UtilServicesProvider } from '../providers/util-services/util-services';
 
 @NgModule({
@@ -27,11 +26,10 @@ import { UtilServicesProvider } from '../providers/util-services/util-services';
   ],
   providers: [
     StatusBar,
+    Diagnostic,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NoninProvider,
-    UtilServicesProvider,
-    Diagnostic
+    UtilServicesProvider
   ]
 })
 export class AppModule {}
