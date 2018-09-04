@@ -4,9 +4,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { Diagnostic } from '@ionic-native/diagnostic'
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NoninProvider } from '../providers/nonin/nonin';
+import { UtilServicesProvider } from '../providers/util-services/util-services';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { NoninProvider } from '../providers/nonin/nonin';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NoninProvider
+    NoninProvider,
+    UtilServicesProvider,
+    Diagnostic
   ]
 })
 export class AppModule {}
