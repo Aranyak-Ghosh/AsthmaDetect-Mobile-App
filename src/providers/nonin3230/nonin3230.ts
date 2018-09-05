@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { BLE } from '@ionic-native/ble';
@@ -12,22 +12,28 @@ import { BLE } from '@ionic-native/ble';
 @Injectable()
 export class Nonin3230Provider {
 
-  SERVICE_UUID: string = '46a970e00d5f11e28b5e0002a5d5c51b';
-  CHAR_UUID: string = '0aad7ea00d6011e28e3c0002a5d5c51b';
-  constructor(public http: HttpClient, private ble: BLE) {
+  SERVICE_UUID: string = '46A970E0-0D5F-11E2-8B5E-0002A5D5C51B';
+  CHAR_UUID: string = '0AAD7EA0-0D60-11E2-8E3C-0002A5D5C51B';
+  constructor(private ble: BLE) {
     console.log('Hello Nonin3230Provider Provider');
   }
 
   scanAndConnect() {
     this.ble.startScan([this.SERVICE_UUID]).subscribe(peripheral => {
-      debugger;
       console.log(peripheral);
 
       if (peripheral && peripheral.name && peripheral.name.indexOf('Nonin3230_') > -1 && peripheral.id) {
         this.ble.stopScan();
         this.ble.connect(peripheral.id).subscribe(status=>{
           console.log(status);
-          debugger;
+          this.ble.startNotification(status.id,this.SERVICE_UUID,this.CHAR_UUID).subscribe(data=>{
+            console.log(data);
+            
+            let temp=new Uint8Array(data);
+            let spo2=temp[7];
+            let pulse=temp[8]*256+temp[9];
+            debugger;
+          })
         })
       }
     })
