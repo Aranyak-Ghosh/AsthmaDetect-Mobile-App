@@ -12,7 +12,6 @@ export class HomePage {
   errCB = err => console.log(err);
   btEnabled: boolean;
   constructor(public navCtrl: NavController, private nonin3230: Nonin3230Provider, private ngzone: NgZone) {
-    // this.deffered()
     console.log("In Constructor");
     this.spo2=0;
     this.heartrate=0;
