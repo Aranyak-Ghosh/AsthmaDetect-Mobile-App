@@ -3,9 +3,11 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { IonicStorageModule } from "@ionic/storage";
 
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { BLE } from '@ionic-native/ble';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -19,7 +21,8 @@ import { Nonin3230Provider } from '../providers/nonin3230/nonin3230';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,6 +33,7 @@ import { Nonin3230Provider } from '../providers/nonin3230/nonin3230';
     StatusBar,
     Diagnostic,
     BLE,
+    AndroidPermissions,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UtilServicesProvider,

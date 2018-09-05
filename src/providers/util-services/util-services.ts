@@ -89,11 +89,11 @@ export class UtilServicesProvider {
     toast.present();
   }
 
-  showAlert(title: string, subTitle: string, dismiss: any) {
+  showAlert(title: string, subTitle: string, button:string, dismiss: any) {
     let alert = this.alertCtrl.create({
       title: title,
       subTitle: subTitle,
-      buttons: ["OK"]
+      buttons: [button]
     });
     alert.onDidDismiss(() => {
       dismiss();
