@@ -13,6 +13,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { UtilServicesProvider } from '../providers/util-services/util-services';
 import { Nonin3230Provider } from '../providers/nonin3230/nonin3230';
+import { FitbitProvider } from '../providers/fitbit/fitbit';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { Nonin3230Provider } from '../providers/nonin3230/nonin3230';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UtilServicesProvider,
-    Nonin3230Provider
+    Nonin3230Provider,
+    FitbitProvider
   ]
 })
 export class AppModule { }
