@@ -15,6 +15,8 @@ import { UtilServicesProvider } from '../providers/util-services/util-services';
 import { Nonin3230Provider } from '../providers/nonin3230/nonin3230';
 import { FitbitProvider } from '../providers/fitbit/fitbit';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -22,6 +24,7 @@ import { FitbitProvider } from '../providers/fitbit/fitbit';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
