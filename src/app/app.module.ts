@@ -16,7 +16,7 @@ import { Nonin3230Provider } from '../providers/nonin3230/nonin3230';
 import { FitbitProvider } from '../providers/fitbit/fitbit';
 
 import { HttpClientModule } from '@angular/common/http';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser'
 @NgModule({
   declarations: [
     MyApp,
@@ -39,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     BLE,
     AndroidPermissions,
     SplashScreen,
+    InAppBrowser,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UtilServicesProvider,
     Nonin3230Provider,

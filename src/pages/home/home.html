@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      RespiConnect
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,4 +10,5 @@
   <button (click)='scan()'>Scan</button>
   <h2 *ngIf="spo2">SPO2: {{spo2}}</h2>
   <h2 *ngIf="heartrate">Pulse: {{heartrate}}</h2>
+  <button (click)='sleep()'>Get Sleep Data</button>
 </ion-content>

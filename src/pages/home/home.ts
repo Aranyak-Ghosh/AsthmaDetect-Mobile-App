@@ -3,6 +3,7 @@ import { NavController } from "ionic-angular";
 
 import { Nonin3230Provider } from '../../providers/nonin3230/nonin3230'
 import { FitbitProvider } from '../../providers/fitbit/fitbit';
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 @Component({
   selector: "page-home",
@@ -14,7 +15,7 @@ export class HomePage {
   errCB = err => console.log(err);
   btEnabled: boolean;
 
-  constructor(public navCtrl: NavController, private nonin3230: Nonin3230Provider, private ngzone: NgZone, private fitbit: FitbitProvider) {
+  constructor(public navCtrl: NavController, private nonin3230: Nonin3230Provider, private ngzone: NgZone, private inAppBrowser: InAppBrowser, private fitbit: FitbitProvider) {
     console.log("In Constructor");
     this.spo2 = 0;
     this.heartrate = 0;
@@ -29,13 +30,21 @@ export class HomePage {
     let token;
     try {
       token = await this.fitbit.getToken();
-      if(token==null){
-        let authURL=await this.fitbit.getAuthURL();
-        window.open(`${authURL}`);
+      if (token == null) {
+        let data: any = await this.fitbit.getAuthURL();
+        let win=this.inAppBrowser.create(`${data.auth_url}`, '_blank', 'location=yes');
+        win.on('exit').subscribe(data=>{
+          this.fitbit.reqToken();
+        });
       }
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
+  }
+
+  sleep(){
+    console.log('sleep')
+    this.fitbit.getSleep();
   }
 
   scan() {
