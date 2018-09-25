@@ -1,8 +1,8 @@
 import { Component, NgZone } from "@angular/core";
 import { NavController } from "ionic-angular";
 
-import { Nonin3230Provider } from '../../providers/nonin3230/nonin3230'
-import { FitbitProvider } from '../../providers/fitbit/fitbit';
+import { Nonin3230Provider } from "../../providers/nonin3230/nonin3230";
+import { FitbitProvider } from "../../providers/fitbit/fitbit";
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 @Component({
@@ -15,7 +15,13 @@ export class HomePage {
   errCB = err => console.log(err);
   btEnabled: boolean;
 
-  constructor(public navCtrl: NavController, private nonin3230: Nonin3230Provider, private ngzone: NgZone, private inAppBrowser: InAppBrowser, private fitbit: FitbitProvider) {
+  constructor(
+    public navCtrl: NavController,
+    private nonin3230: Nonin3230Provider,
+    private ngzone: NgZone,
+    private inAppBrowser: InAppBrowser,
+    private fitbit: FitbitProvider
+  ) {
     console.log("In Constructor");
     this.spo2 = 0;
     this.heartrate = 0;
@@ -32,8 +38,13 @@ export class HomePage {
       token = await this.fitbit.getToken();
       if (token == null) {
         let data: any = await this.fitbit.getAuthURL();
-        let win=this.inAppBrowser.create(`${data.auth_url}`, '_blank', 'location=yes');
-        win.on('exit').subscribe(data=>{
+        debugger;
+        let win = this.inAppBrowser.create(
+          `${data.auth_url}`,
+          "_blank",
+          "location=yes"
+        );
+        win.on("exit").subscribe(data => {
           this.fitbit.reqToken();
         });
       }
@@ -42,8 +53,8 @@ export class HomePage {
     }
   }
 
-  sleep(){
-    console.log('sleep')
+  sleep() {
+    console.log("sleep");
     this.fitbit.getSleep();
   }
 
@@ -52,11 +63,11 @@ export class HomePage {
       this.ngzone.run(() => {
         this.spo2 = data.spo2;
         this.heartrate = data.pulse;
-      })
+      });
     });
   }
 
   getData() {
-    console.log('Starting Listener');
+    console.log("Starting Listener");
   }
 }
