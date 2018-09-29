@@ -5,22 +5,37 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from "@ionic/storage";
 
+/**
+ * PLUGINS
+ */
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { BLE } from '@ionic-native/ble';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+
+/**
+ * PROVIDERS
+ */
 import { UtilServicesProvider } from '../providers/util-services/util-services';
 import { Nonin3230Provider } from '../providers/nonin3230/nonin3230';
 import { FitbitProvider } from '../providers/fitbit/fitbit';
 
+/**
+ * PAGES
+ */
+import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+
+
 import { HttpClientModule } from '@angular/common/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser'
+import { AuthProvider } from '../providers/auth/auth';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +46,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser'
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -43,7 +59,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser'
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UtilServicesProvider,
     Nonin3230Provider,
-    FitbitProvider
+    FitbitProvider,
+    AuthProvider
   ]
 })
 export class AppModule { }

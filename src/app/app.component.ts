@@ -6,15 +6,16 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Diagnostic } from "@ionic-native/diagnostic";
 
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 
 import { UtilServicesProvider } from '../providers/util-services/util-services'
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
-  constructor(platform: Platform, permissions: AndroidPermissions,utilService: UtilServicesProvider, diagnostics: Diagnostic, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, permissions: AndroidPermissions, utilService: UtilServicesProvider, diagnostics: Diagnostic, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -37,7 +38,7 @@ export class MyApp {
           if (state == diagnostics.bluetoothState.POWERED_ON) {
             console.log('BT enabled')
           } else {
-            utilService.showConfirm('Bluetooth','Please Turn on Bluetooth','Close App','Turn on Bluetooth',()=>{platform.exitApp()},()=>{diagnostics.setBluetoothState(true)})
+            utilService.showConfirm('Bluetooth', 'Please Turn on Bluetooth', 'Close App', 'Turn on Bluetooth', () => { platform.exitApp() }, () => { diagnostics.setBluetoothState(true) })
           }
         })
         .catch(err => console.log(err));

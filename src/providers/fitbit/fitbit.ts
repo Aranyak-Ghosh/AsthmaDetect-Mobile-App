@@ -20,7 +20,7 @@ export class FitbitProvider {
   async getToken() {
     return new Promise(async (resolve, reject) => {
       try {
-        this.token = await this.storage.get("Token");
+        this.token = await this.storage.get("FitbitToken");
         console.log("Token", this.token);
         resolve(this.token);
       } catch (err) {
