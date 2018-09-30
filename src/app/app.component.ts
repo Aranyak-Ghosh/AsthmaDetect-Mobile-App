@@ -8,6 +8,7 @@ import { Diagnostic } from "@ionic-native/diagnostic";
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 
+import { AuthProvider } from '../providers/auth/auth';
 import { UtilServicesProvider } from '../providers/util-services/util-services'
 @Component({
   templateUrl: 'app.html'
@@ -15,7 +16,7 @@ import { UtilServicesProvider } from '../providers/util-services/util-services'
 export class MyApp {
   rootPage: any = LoginPage;
 
-  constructor(platform: Platform, permissions: AndroidPermissions, utilService: UtilServicesProvider, diagnostics: Diagnostic, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, permissions: AndroidPermissions, private auth: AuthProvider, private utilService: UtilServicesProvider, diagnostics: Diagnostic, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -30,6 +31,17 @@ export class MyApp {
       });
 
       statusBar.styleDefault();
+      this.auth.autoLogin().then(data => {
+        if (data) {
+          this.rootPage = HomePage;
+        } else {
+          this.rootPage = LoginPage;
+        }
+      }).catch(err => {
+        console.log(err);
+        this.utilService.showAlertBasic('Error', 'Unable to reach server! Try again later');
+      })
+
       splashScreen.hide();
 
       diagnostics

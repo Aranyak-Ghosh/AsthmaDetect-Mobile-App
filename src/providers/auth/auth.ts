@@ -11,7 +11,7 @@ import { UtilServicesProvider } from "../util-services/util-services"
 */
 @Injectable()
 export class AuthProvider {
-  ip: String = `10.25.147.67`;
+  ip: String = `192.168.1.108`;
   url: String = `http://${this.ip}:8080/user`;
   constructor(public http: HttpClient, private storage: Storage, private utilService: UtilServicesProvider) {
     console.log('Hello AuthProvider Provider');
@@ -21,19 +21,43 @@ export class AuthProvider {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
-      headers.append('Accept', 'application/json');
+      // headers.append('Accept', 'application/json');
+      headers.append('withCredentials', 'true');
       this.http.post(`${this.url}/login`, cred, { headers: headers }).subscribe((data: any) => {
         if (data.token) {
           this.storage.set('AuthToken', data.token);
           resolve(true);
         } else {
-          this.utilService.showAlertBasic('Error', 'Login Failed! Try again later');
-          resolve(data.msg);
+          resolve(data);
         }
       }, err => {
         console.log(err);
         reject(err);
       });
+
+    });
+  }
+
+  async autoLogin() {
+    return new Promise(async (resolve, reject) => {
+      let token = await this.storage.get('AuthToken');
+      if (token) {
+        let query = `token=${token}`;
+        this.http.get(`${this.url}/validateToken?${query}`).subscribe((data: any) => {
+          if (data.token) {
+            resolve(true);
+          } else if (data.msg == 'Internal error') {
+            reject(data);
+          } else if (data.status == 'invalidToken') {
+            resolve(false);
+          }
+        }, err => {
+          console.log(err);
+          reject(err);
+        })
+      }
+      else
+        resolve(false);
 
     });
   }

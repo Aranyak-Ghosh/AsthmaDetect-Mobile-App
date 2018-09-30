@@ -26,7 +26,7 @@ import { FitbitProvider } from '../providers/fitbit/fitbit';
  */
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-
+import { RegisterPage } from '../pages/register/register'
 
 import { HttpClientModule } from '@angular/common/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser'
@@ -34,8 +34,9 @@ import { AuthProvider } from '../providers/auth/auth';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    LoginPage
+    LoginPage,
+    RegisterPage,
+    HomePage
   ],
   imports: [
     BrowserModule,
