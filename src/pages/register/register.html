@@ -4,15 +4,103 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
 
-  <ion-navbar>
-    <ion-title>register</ion-title>
-  </ion-navbar>
+<ion-content class="register-content" swipeBackEnabled="false" padding>
 
-</ion-header>
+  <div class="register-box">
+    <form (ngSubmit)="register()">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
 
+            <ion-item>
+              <ion-label>
+                First Name
+              </ion-label>
+              <ion-input type="text" placeholder="First Name" name="fName" [(ngModel)]="credentials.fName" autocorrect="off"
+                required></ion-input>
+            </ion-item>
 
-<ion-content padding>
+            <ion-item>
+              <ion-label>
+                Last Name
+              </ion-label>
+              <ion-input type="text" placeholder="Last Name" name="lName" [(ngModel)]="credentials.lName" autocorrect="off"
+                required></ion-input>
+            </ion-item>
 
+            <ion-item>
+              <ion-label>
+                Email
+              </ion-label>
+              <ion-input type="text" placeholder="Email" name="username" [(ngModel)]="credentials.username" autocorrect="off"
+                autocapitalize="none" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                Password
+              </ion-label>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="credentials.password"
+                autocorrect="off" autocapitalize="none" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                Confirm Password
+              </ion-label>
+              <ion-input type="password" placeholder="Confirm Password" name="confirmpassword" [(ngModel)]="confirmpassword"
+                autocorrect="off" autocapitalize="none" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                Gender
+              </ion-label>
+              <ion-select name="gender" [(ngModel)]="gender">
+                <ion-option value="f">Female</ion-option>
+                <ion-option value="m">Male</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                Contact No.
+              </ion-label>
+              <ion-input type="tel" placeholder="Contact No." name="contactNo" [(ngModel)]="credentials.contactNo"
+                autocorrect="off" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                Age
+              </ion-label>
+              <ion-input type="number" placeholder="Age" name="age" [(ngModel)]="credentials.age" autocorrect="off"
+                required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                Address
+              </ion-label>
+              <ion-input type="text" placeholder="Address" name="address" [(ngModel)]="credentials.address" autocorrect="off"
+                required></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit">Register</button>
+          <br>
+          <button ion-button class="submit-btn" type=button full [disabled]="(credentials.username && credentials.password)"
+            (click)="register()">Login</button>
+          <!-- <button ion-button class="register-btn" block clear (click)="forgotPassword()">Forgot Password</button> -->
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
 </ion-content>

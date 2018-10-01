@@ -32,6 +32,7 @@ export class MyApp {
 
       statusBar.styleDefault();
       this.auth.autoLogin().then(data => {
+        splashScreen.hide();
         if (data) {
           this.rootPage = HomePage;
         } else {
@@ -39,10 +40,10 @@ export class MyApp {
         }
       }).catch(err => {
         console.log(err);
+        splashScreen.hide();
         this.utilService.showAlertBasic('Error', 'Unable to reach server! Try again later');
       })
 
-      splashScreen.hide();
 
       diagnostics
         .getBluetoothState()

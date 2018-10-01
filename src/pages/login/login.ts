@@ -5,6 +5,7 @@ import { AuthProvider } from '../../providers/auth/auth'
 import { UtilServicesProvider } from '../../providers/util-services/util-services'
 
 import { HomePage } from '../home/home'
+import { RegisterPage } from '../register/register'
 /**
  * Generated class for the LoginPage page.
  *
@@ -46,7 +47,7 @@ export class LoginPage {
   }
 
   register() {
-    // this.navCtrl.push()
+    this.navCtrl.push(RegisterPage);
   }
 
 }
