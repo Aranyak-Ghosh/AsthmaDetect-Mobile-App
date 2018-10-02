@@ -4,9 +4,16 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-header>
 
+  <ion-navbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+
+</ion-header>
 <ion-content class="register-content" swipeBackEnabled="false" padding>
 
+  <h2 class='err-msg'>{{errMsg}}</h2>
   <div class="register-box">
     <form (ngSubmit)="register()">
       <ion-row>
@@ -33,8 +40,8 @@
               <ion-label floating>
                 Email
               </ion-label>
-              <ion-input type="Email" placeholder="Email" name="username" [(ngModel)]="credentials.username" autocorrect="off"
-                autocapitalize="none" required></ion-input>
+              <ion-input type="Email" placeholder="Email" name="username" [(ngModel)]="credentials.username"
+                autocorrect="off" autocapitalize="none" required></ion-input>
             </ion-item>
 
             <ion-item>
@@ -93,10 +100,11 @@
 
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit">Register</button>
+          <button ion-button class="submit-btn" full [disabled]="!(confirmPassword && credentials.username && credentials.password && credentials.firstName && credentials.lastName && credentials.contactNo && credentials.gender)"
+            type="submit">Register</button>
           <br>
           <button ion-button class="submit-btn" type=button full [disabled]="(credentials.username && credentials.password)"
-            (click)="register()">Login</button>
+            (click)="goToLogin()">Login</button>
           <!-- <button ion-button class="register-btn" block clear (click)="forgotPassword()">Forgot Password</button> -->
         </ion-col>
       </ion-row>

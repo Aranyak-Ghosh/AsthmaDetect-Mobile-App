@@ -17,6 +17,10 @@ export class AuthProvider {
     console.log('Hello AuthProvider Provider');
   }
 
+  /**
+   * Method to log users in using given credentials
+   * @param cred Contains Username, password
+   */
   async login(cred: any) {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders();
@@ -38,6 +42,10 @@ export class AuthProvider {
     });
   }
 
+  /**
+   * Method to check if user is already logged in by checking 
+   * if there is a token stored in memory and validating that token.
+   */
   async autoLogin() {
     return new Promise(async (resolve, reject) => {
       let token = await this.storage.get('AuthToken');
@@ -62,4 +70,23 @@ export class AuthProvider {
     });
   }
 
+  /**
+   * Method to register a user
+   * @param data User data
+   */
+  register(data) {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      this.http.post(`${this.url}/signUp`, data, { headers: headers }).subscribe((data: any) => {
+        if (data.success)
+          resolve(true);
+        else if(data.name=='UserExistsError')
+          reject('userExists')
+      }, err => {
+        console.log(err);
+        reject(err);
+      });
+    });
+  }
 }

@@ -1,3 +1,16 @@
 page-register {
+  .err-msg {
+    background-color: red;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+  }
 
+  ion-item{
+      border-bottom: 1px solid grey !important;
+  }
+  ion-row {
+    align-items: center;
+    text-align: center;
+  }
 }
