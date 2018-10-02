@@ -11,7 +11,7 @@ import { UtilServicesProvider } from "../util-services/util-services"
 */
 @Injectable()
 export class AuthProvider {
-  ip: String = `192.168.1.108`;
+  ip: String = `10.25.147.115`;
   url: String = `http://${this.ip}:8080/user`;
   constructor(public http: HttpClient, private storage: Storage, private utilService: UtilServicesProvider) {
     console.log('Hello AuthProvider Provider');

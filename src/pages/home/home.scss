@@ -1,3 +1,22 @@
 page-home {
+  .scroll-content {
+    background-color: #f4f4f7 !important;
+  }
 
+  ion-card {
+    height: 100%;
+  }
+
+  .dashboard-card {
+    background: #f4f4f7;
+  }
+
+  .title {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .vital {
+    font-size: 140%;
+  }
 }
