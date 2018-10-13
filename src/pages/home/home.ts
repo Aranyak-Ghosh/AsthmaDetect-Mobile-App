@@ -1,9 +1,12 @@
 import { Component, NgZone } from "@angular/core";
 import { NavController } from "ionic-angular";
+import { Diagnostic } from "@ionic-native/diagnostic";
 
 import { Nonin3230Provider } from "../../providers/nonin3230/nonin3230";
 import { FitbitProvider } from "../../providers/fitbit/fitbit";
 import { InAppBrowser } from "@ionic-native/in-app-browser";
+import { Platform } from "ionic-angular";
+import { UtilServicesProvider } from "../../providers/util-services/util-services";
 
 @Component({
   selector: "page-home",
@@ -20,11 +23,32 @@ export class HomePage {
     private nonin3230: Nonin3230Provider,
     private ngzone: NgZone,
     private inAppBrowser: InAppBrowser,
-    private fitbit: FitbitProvider
+    private fitbit: FitbitProvider,
+    private diagnostic: Diagnostic,
+    private utilService: UtilServicesProvider,
+    private platform: Platform
   ) {
     console.log("In Constructor");
     this.spo2 = 0;
     this.heartrate = 0;
+    this.diagnostic.registerBluetoothStateChangeHandler(state => {
+      if (state == this.diagnostic.bluetoothState.POWERED_OFF) {
+        this.utilService.showConfirm(
+          "Bluetooth",
+          "Please Turn on Bluetooth",
+          "Close App",
+          "Turn on Bluetooth",
+          () => {
+            this.platform.exitApp();
+          },
+          () => {
+            this.diagnostic.setBluetoothState(true);
+          }
+        );
+      } else if (state == this.diagnostic.bluetoothState.POWERED_ON) {
+        this.scan();
+      }
+    });
     this.deferred();
   }
 
@@ -67,7 +91,4 @@ export class HomePage {
     });
   }
 
-  getData() {
-    console.log("Starting Listener");
-  }
 }
