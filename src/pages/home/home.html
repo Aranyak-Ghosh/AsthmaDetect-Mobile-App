@@ -38,17 +38,29 @@
   </div>
 
 
-  <div class="row">
-    <div class="col text-center dashboard-btn-col">
-      <ion-card class="dashboard-card">
-        <button class="button button-positive" class="dashboard-btn">
-          <img src="assets/imgs/bed.svg" />
-        </button>
-        <h3 class="title">Sleep Statistics</h3>
-      </ion-card>
+  <ion-content class="card-background-page">
+  
+    <div class="row">
+      <div class="col text-center dashboard-btn-col">
+        <ion-card class="dashboard-card" id="heart-rate">
+          <button class="button button-positive" class="dashboard-btn">
+            <img src="/assets/imgs/bed.svg" />
+          </button>
+          <h3 class="title">Sleep Statistics</h3>
+        </ion-card>
+      </div>
+      <div class="col text-center dashboard-btn-col right-btn">
+        <ion-card class="dashboard-card" id="he-card" (click)="navToPage('homerescue')">
+          <button class="button button-positive" class="dashboard-btn">
+            <img src="assets/imgs/oximeter.png" />
+          </button>
+          <h3 class="title">Spirometry</h3>
+        </ion-card>
+      </div>
+  
     </div>
-    
-  </div>
+
+  
 
   <div class="row">
     <div class="col text-center dashboard-btn-col">
