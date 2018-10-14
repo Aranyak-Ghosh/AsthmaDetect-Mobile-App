@@ -10,7 +10,7 @@ import { Storage } from "@ionic/storage";
 */
 @Injectable()
 export class FitbitProvider {
-  url: string = "http://10.25.147.67:8080/fitbit";
+  url: string = "http://10.25.147.115:8080/fitbit";
   token: string;
   tokenDuration: number = 28800 * 100;
   constructor(public http: HttpClient, private storage: Storage) {
@@ -43,7 +43,6 @@ export class FitbitProvider {
   async refreshToken() {
     return new Promise(async (resolve, reject) => {
       let accessToken = await this.getToken();
-      debugger;
       let refreshToken = await this.storage.get("refreshToken");
       this.http
         .post(`${this.url}/refreshToken`, { accessToken, refreshToken })
@@ -82,17 +81,16 @@ export class FitbitProvider {
     });
   }
 
-  async getSleep() {
+  async getSleep(date) {
     return new Promise(async (resolve, reject) => {
       try {
-        debugger;
         if (await this.checkTokenExpiry()) {
           await this.refreshToken();
         }
         try {
           let token = await this.getToken();
 
-          this.http.get(`${this.url}/sleep?token=${token}`).subscribe(
+          this.http.get(`${this.url}/sleep?token=${token}&date=${date}`).subscribe(
             data => {
               console.log(data);
               resolve(data);

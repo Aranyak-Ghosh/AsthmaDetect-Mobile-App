@@ -1,0 +1,20 @@
+page-sleep {
+    @keyframes picker-animate-in {
+        from {
+          height: 0px;
+        }
+      }
+      .picker-open-up {
+        height: 220px;
+        animation: picker-animate-in 0.15s linear;
+      }
+      @keyframes picker-animate-out {
+        from {
+          height: 220px;
+        }
+      }
+      .picker-close-down {
+        height: 0px;
+        animation: picker-animate-out 0.15s linear;
+      }
+}

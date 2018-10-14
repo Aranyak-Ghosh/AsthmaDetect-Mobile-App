@@ -8,6 +8,8 @@ import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { Platform } from "ionic-angular";
 import { UtilServicesProvider } from "../../providers/util-services/util-services";
 
+import { SleepPage } from "../sleep/sleep";
+
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
@@ -52,6 +54,11 @@ export class HomePage {
     this.deferred();
   }
 
+  doRefresh(refresher) {
+    this.scan();
+    setTimeout(refresher.complete(), 1000);
+  }
+
   ionViewDidLoad() {
     console.log("HomePage Loaded");
   }
@@ -60,9 +67,10 @@ export class HomePage {
     let token;
     try {
       token = await this.fitbit.getToken();
+      debugger
       if (token == null) {
+        debugger
         let data: any = await this.fitbit.getAuthURL();
-        debugger;
         let win = this.inAppBrowser.create(
           `${data.auth_url}`,
           "_blank",
@@ -79,7 +87,7 @@ export class HomePage {
 
   sleep() {
     console.log("sleep");
-    this.fitbit.getSleep();
+    this.navCtrl.push(SleepPage);
   }
 
   scan() {
@@ -90,5 +98,4 @@ export class HomePage {
       });
     });
   }
-
 }

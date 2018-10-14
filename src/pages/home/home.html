@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-title>
       RespiConnect
     </ion-title>
@@ -14,6 +14,13 @@
 </ion-content> -->
 
 <ion-content class="card-background-page">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="Pull to connect..."
+      refreshingText="Connecting...">
+</ion-refresher-content>
+  </ion-refresher>
 
   <div class="row">
     <div class="col text-center dashboard-btn-col">
@@ -43,58 +50,21 @@
     <div class="row">
       <div class="col text-center dashboard-btn-col">
         <ion-card class="dashboard-card" id="heart-rate">
-          <button class="button button-positive" class="dashboard-btn">
+          <button class="button button-positive" class="dashboard-btn" (click)="sleep()">
             <img src="/assets/imgs/bed.svg" />
           </button>
           <h3 class="title">Sleep Statistics</h3>
         </ion-card>
       </div>
       <div class="col text-center dashboard-btn-col right-btn">
-        <ion-card class="dashboard-card" id="he-card" (click)="navToPage('homerescue')">
+        <ion-card class="dashboard-card" id="he-card">
           <button class="button button-positive" class="dashboard-btn">
-            <img src="assets/imgs/oximeter.png" />
+            <img src="assets/imgs/lungs.svg" />
           </button>
           <h3 class="title">Spirometry</h3>
         </ion-card>
       </div>
   
     </div>
-
-  
-
-  <div class="row">
-    <div class="col text-center dashboard-btn-col">
-      <ion-card class="dashboard-card" id="trackmyjobs-card" (click)="navToPage('trackmyclaims')">
-        <ion-row>
-          <ion-col width-50>
-            <button class="button button-positive" class="dashboard-btn">
-              <img src="assets/imgs/contract.svg" style="max-width: 50%;float:left;margin-left:1em" />
-            </button>
-          </ion-col>
-          <ion-col width-50 class="v-align-text">
-            <h3 class="dashboard-title" style="margin-left:5rem">TRACK MY JOBS</h3>
-          </ion-col>
-        </ion-row>
-      </ion-card>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col text-center dashboard-btn-col">
-      <ion-card class="dashboard-card" id="documents-card" (click)="navToPage('documents')">
-        <ion-row>
-          <ion-col width-50 class="v-align-text">
-            <h3 class="dashboard-title" style="margin-left:1em">VIEW DOCUMENTS</h3>
-          </ion-col>
-          <ion-col width-50>
-            <button class="button button-positive" class="dashboard-btn">
-              <img src="assets/imgs/documents-btn.png" style="max-width: 50%;float:right;margin-right:1em" />
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-card>
-    </div>
-  </div>
   <br>
 </ion-content>
