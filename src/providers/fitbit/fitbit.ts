@@ -10,7 +10,7 @@ import { Storage } from "@ionic/storage";
 */
 @Injectable()
 export class FitbitProvider {
-  url: string = "http://10.25.147.115:8080/fitbit";
+  url: string = "http://10.25.146.158:8080/fitbit";
   token: string;
   tokenDuration: number = 28800 * 100;
   constructor(public http: HttpClient, private storage: Storage) {
@@ -44,16 +44,22 @@ export class FitbitProvider {
     return new Promise(async (resolve, reject) => {
       let accessToken = await this.getToken();
       let refreshToken = await this.storage.get("refreshToken");
+      let headers = new HttpHeaders();
+      headers.append("Content-Type", "application/x-www-form-urlencoded");
       this.http
-        .post(`${this.url}/refreshToken`, { accessToken, refreshToken })
+        .post(
+          `${this.url}/refreshToken`,
+          { accessToken, refreshToken },
+          { headers: headers }
+        )
         .subscribe(
           data => {
             console.log(data);
-
             resolve(data);
           },
           err => {
             console.log(err);
+            reject(err);
           }
         );
     });
@@ -65,10 +71,9 @@ export class FitbitProvider {
         if (data && data.msg) {
           reject("Token unavailable");
         } else {
-          debugger;
           this.token = data.access_token;
           try {
-            await this.storage.set("Token", data.access_token);
+            await this.storage.set("FitbitToken", data.access_token);
             await this.storage.set("refreshToken", data.refresh_token);
             let expiry = Date.now() + data.expires_in * 100;
             await this.storage.set("TokenExpiry", expiry);
@@ -90,16 +95,18 @@ export class FitbitProvider {
         try {
           let token = await this.getToken();
 
-          this.http.get(`${this.url}/sleep?token=${token}&date=${date}`).subscribe(
-            data => {
-              console.log(data);
-              resolve(data);
-            },
-            err => {
-              console.log(err);
-              reject(err);
-            }
-          );
+          this.http
+            .get(`${this.url}/sleep?token=${token}&date=${date}`)
+            .subscribe(
+              data => {
+                console.log(data);
+                resolve(data);
+              },
+              err => {
+                console.log(err);
+                reject(err);
+              }
+            );
         } catch (err) {
           console.log(err);
           reject(err);
