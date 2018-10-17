@@ -51,6 +51,9 @@ export class HomePage {
         this.scan();
       }
     });
+    this.platform.registerBackButtonAction(() => {
+      this.platform.exitApp();
+    }, 10);
     this.deferred();
   }
 
@@ -67,9 +70,8 @@ export class HomePage {
     let token;
     try {
       token = await this.fitbit.getToken();
-      debugger
+      // debugger
       if (token == null) {
-        debugger
         let data: any = await this.fitbit.getAuthURL();
         let win = this.inAppBrowser.create(
           `${data.auth_url}`,
