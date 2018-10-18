@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-  <ion-card .chart>
+  <ion-card class="chart">
     <ion-card-header>
       Charts
     </ion-card-header>
@@ -24,7 +24,7 @@
   </ion-card>
   <div class="row">
     <div class="col text-center dashboard-btn-col">
-      <ion-card class="dashboard-card" id="trackmyjobs-card" (click)="navToPage('trackmyclaims')">
+      <ion-card class="dashboard-card" id="trackmyjobs-card" (click)="showModal()">
         <ion-row>
           <ion-col width-50>
             <button class="button button-positive" class="dashboard-btn">
@@ -32,8 +32,8 @@
             </button>
           </ion-col>
           <ion-col width-50 class="v-align-text">
-              <h3 class="dashboard-title" style="margin-left:5rem">ADD NEW ENTRY</h3>
-            </ion-col>
+            <h3 class="dashboard-title" style="margin-left:5rem">ADD NEW ENTRY</h3>
+          </ion-col>
         </ion-row>
       </ion-card>
     </div>

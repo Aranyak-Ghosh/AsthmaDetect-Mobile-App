@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams, ModalController, Modal } from "ionic-angular";
 
+import {ModalSpiroPage} from "../../modals/spiro/spiro"
 /**
  * Generated class for the SpirometryPage page.
  *
@@ -13,9 +14,13 @@ import { NavController, NavParams } from "ionic-angular";
   templateUrl: "spirometry.html"
 })
 export class SpirometryPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl:ModalController) {}
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad SpirometryPage");
+  }
+
+  showModal(){
+    this.modalCtrl.create(ModalSpiroPage).present();
   }
 }
