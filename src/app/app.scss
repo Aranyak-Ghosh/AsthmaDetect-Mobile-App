@@ -14,3 +14,382 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+content {
+    background-color: #000;
+  }
+  
+  .col,
+  .row {
+    padding: 0;
+  }
+  
+  .content-md .dashboard-btn-col {
+    padding: 0px 2px;
+  }
+  
+  .card h3,
+  .card h4,
+  .card h5,
+  .card h6 {
+    margin: 0px 0;
+  }
+  
+  .card {
+    margin-bottom: 0rem !important;
+  }
+  
+  .dashboard-card {
+    background-color: #0886d1;
+    padding: 1em;
+    margin-top: 5px;
+    height: 96.5%;
+  }
+  
+  .dashboard-card:active {
+    box-shadow: 0px 1px 15px #000;
+  }
+  
+  .dashboard-btn {
+    background-color: #0886d1;
+  }
+  
+  .dashboard-title {
+    background-color: #0886d1;
+    color: #fff !important;
+    text-align: center;
+    margin-top: 0r em !important;
+  }
+  
+  .v-align-text {
+    display: flex !important;
+    align-items: center !important;
+  }
+  
+  .left-btn {
+    margin-left: -1.1em;
+  }
+  
+  .right-btn {
+    margin-left: -1.9rem;
+  }
+  
+  #eligibility-card,
+  #eligibility-card button,
+  #eligibility-card h3 {
+    background-color: transparent !important;
+  }
+  #eligibility-card {
+    background: -webkit-linear-gradient(right, #40c400, #0d8428);
+    background: -o-linear-gradient(right, #40c400, #0d8428);
+    background: -moz-linear-gradient(right, #40c400, #0d8428);
+    background: linear-gradient(to right bottom, #40c400, #0d8428);
+  }
+  
+  #documents-card,
+  #documents-card button,
+  #documents-card h3 {
+    background-color: transparent !important;
+  }
+  #documents-card {
+    background: -webkit-linear-gradient(right, #c00075, #870053);
+    background: -o-linear-gradient(right, #c00075, #870053);
+    background: -moz-linear-gradient(right, #c00075, #870053);
+    background: linear-gradient(to right bottom, #c00075, #870053);
+  }
+  
+  #trackmyjobs-card,
+  #trackmyjobs-card button,
+  #trackmyjobs-card h3 {
+    background-color: transparent !important;
+  }
+  #trackmyjobs-card {
+    background: -webkit-linear-gradient(right, #044B7F, #002f53);
+    background: -o-linear-gradient(right, #044B7F, #002f53);
+    background: -moz-linear-gradient(right, #044B7F, #002f53);
+    background: linear-gradient(to right bottom, #044B7F, #002f53);
+  }
+  
+  #service-card,
+  #service-card button,
+  #service-card h3 {
+    background-color: transparent !important;
+  }
+  #service-card {
+    background: -webkit-linear-gradient(right, #136473, #265667);
+    background: -o-linear-gradient(right, #136473, #265667);
+    background: -moz-linear-gradient(right, #136473, #265667);
+    background: linear-gradient(to right bottom, #136473, #265667);
+  }
+  
+  #car-card,
+  #car-card button,
+  #car-card h3 {
+    background-color: transparent !important;
+  }
+  #car-card {
+    background: -webkit-linear-gradient(
+      right,
+      #BD2D2B,
+      #800402
+    ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(
+      right,
+      #BD2D2B,
+      #800402
+    ); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(
+      right,
+      #BD2D2B,
+      #800402
+    ); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(
+      to right bottom,
+      #BD2D2B,
+      #800402
+    ); /* Standard syntax */
+  }
+  
+  #he-card,
+  #he-card button,
+  #he-card h3 {
+    background-color: transparent !important;
+  }
+  #he-card {
+    background: -webkit-linear-gradient(right, #e18b07, #d4550e);
+    background: -o-linear-gradient(right, #e18b07, #d4550e);
+    background: -moz-linear-gradient(right, #e18b07, #d4550e);
+    background: linear-gradient(to right bottom, #e18b07, #d4550e);
+  }
+  
+  #boiler-card,
+  #boiler-card button,
+  #boiler-card h3 {
+    background-color: transparent !important;
+  }
+  #boiler-card {
+    background: -webkit-linear-gradient(
+      right,
+      #1460d0,
+      #0d3d8c
+    ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(
+      right,
+      #1460d0,
+      #0d3d8c
+    ); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(
+      right,
+      #1460d0,
+      #0d3d8c
+    ); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(
+      to right bottom,
+      #1460d0,
+      #0d3d8c
+    ); /* Standard syntax */
+  }
+  
+  .wrapper img {
+    -webkit-box-shadow: inset 0 4px 0px #585858, 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 4px 0px #585858, 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  #appliance-card,
+  #appliance-card button,
+  #appliance-card h3 {
+    background-color: transparent !important;
+  }
+  #appliance-card {
+    background: -webkit-linear-gradient(right, #8c0a8b, #4e0540);
+    background: -o-linear-gradient(right, #8c0a8b, #4e0540);
+    background: -moz-linear-gradient(right, #8c0a8b, #4e0540);
+    background: linear-gradient(to right bottom, #8c0a8b, #4e0540);
+  }
+  
+  #breakdown-card,
+  #breakdown-card button,
+  #breakdown-card h3,
+  #history-card,
+  #history-card button,
+  #history-card h3,
+  #geofence-card,
+  #geofence-card button,
+  #geofence-card h3,
+  #findmycar-card button,
+  #findmycar-card h3,
+  #trips-card button,
+  #trips-card h3,
+  #breakdown-card button,
+  #breakdown-card h3,
+  #history-card button,
+  #history-card h3,
+  #alarms-card button,
+  #alarms-card h3, 
+  #mot-card button,
+  #mot-card h3 
+  {
+    background-color: transparent !important;
+  }
+  
+  #findmycar-card {
+    background: -webkit-linear-gradient(right, #114B5F, #114B5F);
+    background: -o-linear-gradient(right, #114B5F, #114B5F);
+    background: -moz-linear-gradient(right, #114B5F, #114B5F);
+    background: linear-gradient(to right bottom, #114B5F, #114B5F);
+  }
+  
+  #trips-card {
+    background: -webkit-linear-gradient(right, #028090, #028090);
+    background: -o-linear-gradient(right, #028090, #028090);
+    background: -moz-linear-gradient(right, #028090, #028090);
+    background: linear-gradient(to right bottom, #028090, #028090);
+  }
+  
+  #breakdown-card {
+    background: -webkit-linear-gradient(right, #746D75, #746D75);
+    background: -o-linear-gradient(right, #746D75, #746D75);
+    background: -moz-linear-gradient(right, #746D75, #746D75);
+    background: linear-gradient(to right bottom, #746D75, #746D75);
+  }
+  
+  #history-card {
+    background: -webkit-linear-gradient(right, #51355A, #51355A);
+    background: -o-linear-gradient(right, #51355A, #51355A);
+    background: -moz-linear-gradient(right, #51355A, #51355A);
+    background: linear-gradient(to right bottom, #51355A, #51355A);
+  }
+  
+  #geofence-card {
+    background: -webkit-linear-gradient(right, #7D6F86 , #7D6F86);
+    background: -o-linear-gradient(right, #7D6F86, #7D6F86);
+    background: -moz-linear-gradient(right, #7D6F86, #7D6F86);
+    background: linear-gradient(to right bottom, #7D6F86, #7D6F86);
+  }
+  
+  #alarms-card{
+    background: -webkit-linear-gradient(right, #B0413E , #B0413E);
+    background: -o-linear-gradient(right, #B0413E, #B0413E);
+    background: -moz-linear-gradient(right, #B0413E, #B0413E);
+    background: linear-gradient(to right bottom, #B0413E, #B0413E);
+  }
+  
+  #mot-card{
+    background: -webkit-linear-gradient(right, #585191 , #585191);
+    background: -o-linear-gradient(right, #585191, #585191);
+    background: -moz-linear-gradient(right, #585191, #585191);
+    background: linear-gradient(to right bottom, #585191, #585191);
+  }
+  
+  
+  .middle-row {
+    padding: 1em;
+  }
+  
+  .middle-img {
+    padding: 1em;
+  }
+  
+  div::-webkit-scrollbar {
+    border: none;
+    width: 0;
+    background: rgba(0, 0, 0, 0);
+  }
+  
+  div::-webkit-scrollbar-track {
+    border: none;
+    width: 0;
+    background: rgba(0, 0, 0, 0);
+  }
+  
+  div::-webkit-scrollbar-thumb {
+    border: none;
+    width: 0;
+    background: rgba(0, 0, 0, 0);
+  }
+  
+  // ion-card {
+  //     position: relative;
+  //     text-align: left;
+  //   }
+  
+  //   // .card-ios, .card-md {
+  //   //   background: #000000;
+  //   //   margin-top: 0;
+  //   // }
+  
+  //   .img-btn {
+  //     opacity: 0.8;
+  //   }
+  
+  //   .card-header{
+  //     background: #fff;
+  //   }
+  
+  //   .card-title {
+  //     position: absolute;
+  //     top: 46%;
+  //     font-size: 1.3em;
+  //     width: 100%;
+  //     color: #fff;
+  //     padding-left: 1em;
+  //   }
+  
+  //   .card-subtitle {
+  //     font-size: 1.0em;
+  //     position: absolute;
+  //     top: 52%;
+  //     width: 100%;
+  //     color: #fff;
+  //   }
+  
+  // .fab {
+  //   color: #fff;
+  //   background-color: #e13838;
+  // }
+  
+  .submit-btn {
+    background-color: #df1514 !important;
+  }
+  
+  .submit-btn:active {
+    background-color: #b41212 !important;
+  }
+  
+  //   /* new stuff */
+  .wrapper {
+    position: relative;
+  }
+  
+  .wrapper p {
+    background-color: black;
+    bottom: 5%;
+    color: white;
+    font-family: Roboto;
+    font-size: 1.25em;
+    left: 0;
+    padding: 0.25em 0.75em;
+    position: absolute;
+  }
+  
+  .card h3 {
+    font-size: 1.2rem;
+  }
+  
+  //Full Screen Modals
+  .modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .alert-md .alert-wrapper {
+    max-width: 320px !important;
+  }
+  .alert-md .alert-title {
+    font-size: 14px !important;
+  }
+  
