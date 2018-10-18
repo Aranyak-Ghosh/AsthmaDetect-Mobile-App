@@ -1,0 +1,41 @@
+<!--
+  Generated template for the SpirometryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Spirometry</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card .chart>
+    <ion-card-header>
+      Charts
+    </ion-card-header>
+    <ion-card-content>
+      Slider which shows FEV and FEV1 charts
+    </ion-card-content>
+  </ion-card>
+  <div class="row">
+    <div class="col text-center dashboard-btn-col">
+      <ion-card class="dashboard-card" id="trackmyjobs-card" (click)="navToPage('trackmyclaims')">
+        <ion-row>
+          <ion-col width-50>
+            <button class="button button-positive" class="dashboard-btn">
+              <img src="assets/imgs/contract.svg" style="max-width: 50%;float:left;margin-left:1em" />
+            </button>
+          </ion-col>
+          <ion-col width-50 class="v-align-text">
+              <h3 class="dashboard-title" style="margin-left:5rem">ADD NEW ENTRY</h3>
+            </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

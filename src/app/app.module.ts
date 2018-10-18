@@ -29,12 +29,13 @@ import { HomePage } from "../pages/home/home";
 import { LoginPage } from "../pages/login/login";
 import { RegisterPage } from "../pages/register/register";
 import { SleepPage } from "../pages/sleep/sleep";
+import { SpirometryPage } from "../pages/spirometry/spirometry";
 
 import { HttpClientModule } from "@angular/common/http";
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { AuthProvider } from "../providers/auth/auth";
 @NgModule({
-  declarations: [MyApp, LoginPage, RegisterPage, HomePage, SleepPage],
+  declarations: [MyApp, LoginPage, RegisterPage, HomePage, SleepPage, SpirometryPage],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -43,7 +44,7 @@ import { AuthProvider } from "../providers/auth/auth";
     CalendarModule
   ],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, LoginPage, RegisterPage, SleepPage],
+  entryComponents: [MyApp, HomePage, LoginPage, RegisterPage, SleepPage, SpirometryPage],
   providers: [
     StatusBar,
     Diagnostic,
