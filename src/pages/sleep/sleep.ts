@@ -40,18 +40,10 @@ export class SleepPage {
   }
 
   async submit() {
-    // let data = await this.fitbit.getSleep(
-    //   this.date.toISOString().split("T")[0]
-    // );
-    // console.log(data);
-
-    // this.inner =
-    //   '<img style="max-height:100%;height:auto;width:100%;max-width:100%;margin:auto;display:inline;" src="' +
-    //   this.graph.toBase64Image() +
-    //   '" />';
-    // $("#sleepChart")
-    //   .parent()
-    //   .html(this.inner);
+    let data = await this.fitbit.getSleep(
+      this.date.toISOString().split("T")[0]
+    );
+    console.log(data);
 
     this.graph = new Chart(this.sleepChart.nativeElement, {
       type: "bar",
