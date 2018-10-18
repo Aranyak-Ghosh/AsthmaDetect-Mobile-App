@@ -10,7 +10,7 @@ import { Storage } from "@ionic/storage";
 */
 @Injectable()
 export class FitbitProvider {
-  url: string = "http://10.25.146.158:8080/fitbit";
+  url: string = "https://sleepy-eyrie-82836.herokuapp.com/fitbit";
   token: string;
   tokenDuration: number = 28800 * 100;
   constructor(public http: HttpClient, private storage: Storage) {

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { NavController, NavParams, ViewController } from "ionic-angular";
 
-import { AuthProvider } from "../../providers/auth/auth";
+import { VitalProvider } from "../../providers/vital/vital";
 @Component({
   selector: "modal-spiro",
   templateUrl: "spiro.html"
@@ -17,15 +17,20 @@ export class ModalSpiroPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private vital: VitalProvider
   ) {}
 
   dismiss() {
     this.viewCtrl.dismiss();
   }
 
-  submit() {
+  async submit() {
     console.log(this.record);
-    this.viewCtrl.dismiss();
+    try {
+      if (await this.vital.submitVital(this.record)) this.viewCtrl.dismiss();
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

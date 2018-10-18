@@ -9,7 +9,7 @@ import { Platform } from "ionic-angular";
 import { UtilServicesProvider } from "../../providers/util-services/util-services";
 
 import { SleepPage } from "../sleep/sleep";
-
+import { SpirometryPage } from "../spirometry/spirometry";
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
@@ -62,6 +62,9 @@ export class HomePage {
     setTimeout(refresher.complete(), 1000);
   }
 
+  spirometry() {
+    this.navCtrl.push(SpirometryPage);
+  }
   ionViewDidLoad() {
     console.log("HomePage Loaded");
   }
