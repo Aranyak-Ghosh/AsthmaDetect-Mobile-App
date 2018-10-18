@@ -30,12 +30,22 @@ import { LoginPage } from "../pages/login/login";
 import { RegisterPage } from "../pages/register/register";
 import { SleepPage } from "../pages/sleep/sleep";
 import { SpirometryPage } from "../pages/spirometry/spirometry";
+import { ModalSpiroPage } from "../modals/spiro/spiro";
 
 import { HttpClientModule } from "@angular/common/http";
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { AuthProvider } from "../providers/auth/auth";
+import { VitalProvider } from '../providers/vital/vital';
 @NgModule({
-  declarations: [MyApp, LoginPage, RegisterPage, HomePage, SleepPage, SpirometryPage],
+  declarations: [
+    MyApp,
+    LoginPage,
+    RegisterPage,
+    HomePage,
+    SleepPage,
+    SpirometryPage,
+    ModalSpiroPage
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -44,7 +54,15 @@ import { AuthProvider } from "../providers/auth/auth";
     CalendarModule
   ],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, LoginPage, RegisterPage, SleepPage, SpirometryPage],
+  entryComponents: [
+    MyApp,
+    HomePage,
+    LoginPage,
+    RegisterPage,
+    SleepPage,
+    SpirometryPage,
+    ModalSpiroPage
+  ],
   providers: [
     StatusBar,
     Diagnostic,
@@ -56,7 +74,8 @@ import { AuthProvider } from "../providers/auth/auth";
     UtilServicesProvider,
     Nonin3230Provider,
     FitbitProvider,
-    AuthProvider
+    AuthProvider,
+    VitalProvider
   ]
 })
 export class AppModule {}
