@@ -1,4 +1,4 @@
-import { Component, NgZone } from "@angular/core";
+import { Component, NgZone, ViewChild, ElementRef } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { Diagnostic } from "@ionic-native/diagnostic";
 
@@ -7,6 +7,7 @@ import { FitbitProvider } from "../../providers/fitbit/fitbit";
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { Platform } from "ionic-angular";
 import { UtilServicesProvider } from "../../providers/util-services/util-services";
+import { Chart } from "chart.js";
 
 import { SleepPage } from "../sleep/sleep";
 import { SpirometryPage } from "../spirometry/spirometry";
@@ -15,10 +16,15 @@ import { SpirometryPage } from "../spirometry/spirometry";
   templateUrl: "home.html"
 })
 export class HomePage {
+  @ViewChild("chart")
+  chart: ElementRef;
   spo2: number;
   heartrate: number;
   errCB = err => console.log(err);
   btEnabled: boolean;
+  graph: any;
+  spo2arr = [];
+  heartRatearr = [];
 
   constructor(
     public navCtrl: NavController,
@@ -65,8 +71,10 @@ export class HomePage {
   spirometry() {
     this.navCtrl.push(SpirometryPage);
   }
+
   ionViewDidLoad() {
     console.log("HomePage Loaded");
+    
   }
 
   async deferred() {
@@ -97,9 +105,15 @@ export class HomePage {
 
   scan() {
     this.nonin3230.scanAndConnect().subscribe(data => {
+      this.spo2arr.push({ t: new Date(), y: data.spo2 });
+      this.heartRatearr.push({ t: new Date(), y: data.heartrate });
       this.ngzone.run(() => {
         this.spo2 = data.spo2;
         this.heartrate = data.pulse;
+        this.graph = new Chart(this.chart.nativeElement, {
+          type: "line",
+          data: this.heartRatearr
+        });
       });
     });
   }

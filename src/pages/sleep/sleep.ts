@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, ElementRef } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 
 import { FitbitProvider } from "../../providers/fitbit/fitbit";
@@ -18,7 +18,7 @@ import { Chart } from "chart.js";
 })
 export class SleepPage {
   @ViewChild("sleepChart")
-  sleepChart;
+  sleepChart: ElementRef;
   date: any;
   type: "string";
   filterSelected: boolean = false;
@@ -40,11 +40,15 @@ export class SleepPage {
   }
 
   async submit() {
+    this.date.add(1,'days');
     let data = await this.fitbit.getSleep(
       this.date.toISOString().split("T")[0]
     );
     console.log(data);
+  }
 
+  ionViewDidLoad() {
+    console.log("ionViewDidLoad SleepPage");
     this.graph = new Chart(this.sleepChart.nativeElement, {
       type: "bar",
       data: {
@@ -85,10 +89,6 @@ export class SleepPage {
         }
       }
     });
-  }
-
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad SleepPage");
   }
 
   onChange(event) {
