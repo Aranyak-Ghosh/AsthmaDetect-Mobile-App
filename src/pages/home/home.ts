@@ -25,7 +25,8 @@ export class HomePage {
   graph: any;
   spo2arr = [];
   heartRatearr = [];
-
+  labels: Array<Date>;
+  vitals: Array<Number>;
   constructor(
     public navCtrl: NavController,
     private nonin3230: Nonin3230Provider,
@@ -39,6 +40,9 @@ export class HomePage {
     console.log("In Constructor");
     this.spo2 = 0;
     this.heartrate = 0;
+    this.labels = new Array<Date>();
+    this.vitals = new Array<Number>();
+
     this.diagnostic.registerBluetoothStateChangeHandler(state => {
       if (state == this.diagnostic.bluetoothState.POWERED_OFF) {
         this.utilService.showConfirm(
@@ -74,14 +78,12 @@ export class HomePage {
 
   ionViewDidLoad() {
     console.log("HomePage Loaded");
-    
   }
 
   async deferred() {
     let token;
     try {
       token = await this.fitbit.getToken();
-      // debugger
       if (token == null) {
         let data: any = await this.fitbit.getAuthURL();
         let win = this.inAppBrowser.create(
@@ -107,12 +109,56 @@ export class HomePage {
     this.nonin3230.scanAndConnect().subscribe(data => {
       this.spo2arr.push({ t: new Date(), y: data.spo2 });
       this.heartRatearr.push({ t: new Date(), y: data.heartrate });
+      this.vitals.push(data.pulse);
+      this.labels.push(new Date());
+      let op = {
+        labels: this.labels,
+        datasets: [
+          {
+            fill: false,
+            data: this.vitals,
+            label: "HeartRate",
+            borderColor: "#fe8b36",
+            backgroundColor: "#fe8b36",
+            lineTension: 0
+          }
+        ]
+      };
+      debugger;
       this.ngzone.run(() => {
         this.spo2 = data.spo2;
         this.heartrate = data.pulse;
         this.graph = new Chart(this.chart.nativeElement, {
           type: "line",
-          data: this.heartRatearr
+          data: op,
+          options: {
+            fill: false,
+            responsive: true,
+            scales: {
+              xAxes: [
+                {
+                  type: "time",
+                  display: false,
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Date"
+                  }
+                }
+              ],
+              yAxes: [
+                {
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Heart Rate"
+                  }
+                }
+              ]
+            },
+            animation: {
+              duration: 0
+            }
+          }
         });
       });
     });

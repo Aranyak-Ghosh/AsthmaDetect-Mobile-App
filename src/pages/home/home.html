@@ -16,13 +16,14 @@
 <ion-content class="card-background-page">
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingText="Pull to connect..."
-      refreshingText="Connecting...">
-</ion-refresher-content>
+    <ion-refresher-content pullingText="Pull to connect..." refreshingText="Connecting...">
+    </ion-refresher-content>
   </ion-refresher>
   <div class="row">
-    <canvas #chart></canvas>
+    <ion-card>
+      <ion-card-header>Heart Rate Chart</ion-card-header>
+      <canvas #chart></canvas>
+    </ion-card>
   </div>
   <div class="row">
     <div class="col text-center dashboard-btn-col">
@@ -48,7 +49,7 @@
 
 
   <ion-content class="card-background-page">
-  
+
     <div class="row">
       <div class="col text-center dashboard-btn-col">
         <ion-card class="dashboard-card" id="heart-rate">
@@ -60,13 +61,13 @@
       </div>
       <div class="col text-center dashboard-btn-col right-btn">
         <ion-card class="dashboard-card" id="he-card">
-          <button class="button button-positive" class="dashboard-btn" (click)="spirometry()" >
+          <button class="button button-positive" class="dashboard-btn" (click)="spirometry()">
             <img src="assets/imgs/lungs.svg" />
           </button>
           <h3 class="title">Spirometry</h3>
         </ion-card>
       </div>
-  
+
     </div>
-  <br>
-</ion-content>
+    <br>
+  </ion-content>
