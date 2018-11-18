@@ -117,6 +117,32 @@ export class FitbitProvider {
     });
   }
 
+  async getHeartrate(date) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        if (await this.checkTokenExpiry()) {
+          await this.refreshToken();
+        }
+        let token = await this.getToken();
+
+        this.http
+          .get(`${this.url}/heartrate?token=${token}&date=${date}`)
+          .subscribe(
+            data => {
+              console.log(data);
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+              reject(err);
+            }
+          );
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  }
+
   async getAuthURL() {
     return new Promise((resolve, reject) => {
       console.log("Fetching Auth URL");
