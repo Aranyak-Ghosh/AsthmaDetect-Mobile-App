@@ -22,13 +22,13 @@
   <div class="row">
     <ion-card>
       <ion-card-header>Heart Rate Chart</ion-card-header>
-      <canvas #chart></canvas>
+      <canvas padding-bottom padding-right #chart></canvas>
     </ion-card>
   </div>
   <div class="row">
     <div class="col text-center dashboard-btn-col">
       <ion-card class="dashboard-card" id="heart-rate">
-        <button class="button button-positive" class="dashboard-btn">
+        <button class="button button-positive" (click)="navToPage('heartrate')"class="dashboard-btn">
           <img src="/assets/imgs/cardiogram.svg" />
         </button>
         <h3 class="title vital">{{heartrate}}</h3>
@@ -53,7 +53,7 @@
     <div class="row">
       <div class="col text-center dashboard-btn-col">
         <ion-card class="dashboard-card" id="heart-rate">
-          <button class="button button-positive" class="dashboard-btn" (click)="sleep()">
+          <button class="button button-positive" class="dashboard-btn" (click)="navToPage('sleep')">
             <img src="/assets/imgs/bed.svg" />
           </button>
           <h3 class="title">Sleep Statistics</h3>
@@ -61,7 +61,7 @@
       </div>
       <div class="col text-center dashboard-btn-col right-btn">
         <ion-card class="dashboard-card" id="he-card">
-          <button class="button button-positive" class="dashboard-btn" (click)="spirometry()">
+          <button class="button button-positive" class="dashboard-btn" (click)="navToPage('spirometry')">
             <img src="assets/imgs/lungs.svg" />
           </button>
           <h3 class="title">Spirometry</h3>

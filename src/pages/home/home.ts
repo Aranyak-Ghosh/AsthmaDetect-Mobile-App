@@ -11,6 +11,7 @@ import { Chart } from "chart.js";
 
 import { SleepPage } from "../sleep/sleep";
 import { SpirometryPage } from "../spirometry/spirometry";
+import { HeartratePage } from "../heartrate/heartrate";
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
@@ -20,13 +21,19 @@ export class HomePage {
   chart: ElementRef;
   spo2: number;
   heartrate: number;
-  errCB = err => console.log(err);
   btEnabled: boolean;
   graph: any;
   spo2arr = [];
   heartRatearr = [];
   labels: Array<Date>;
   vitals: Array<Number>;
+
+  pages = {
+    heartrate: HeartratePage,
+    sleep: SleepPage,
+    spirometry: SpirometryPage
+  };
+
   constructor(
     public navCtrl: NavController,
     private nonin3230: Nonin3230Provider,
@@ -42,6 +49,14 @@ export class HomePage {
     this.heartrate = 0;
     this.labels = new Array<Date>();
     this.vitals = new Array<Number>();
+
+    this.vitals = [10, 12, 13, 14];
+    this.labels = [
+      new Date(11, 11, 2018),
+      new Date(12, 11, 2018),
+      new Date(13, 11, 2018),
+      new Date(14, 11, 2018)
+    ];
 
     this.diagnostic.registerBluetoothStateChangeHandler(state => {
       if (state == this.diagnostic.bluetoothState.POWERED_OFF) {
@@ -72,10 +87,6 @@ export class HomePage {
     setTimeout(refresher.complete(), 1000);
   }
 
-  spirometry() {
-    this.navCtrl.push(SpirometryPage);
-  }
-
   ionViewDidLoad() {
     console.log("HomePage Loaded");
   }
@@ -100,11 +111,6 @@ export class HomePage {
     }
   }
 
-  sleep() {
-    console.log("sleep");
-    this.navCtrl.push(SleepPage);
-  }
-
   scan() {
     this.nonin3230.scanAndConnect().subscribe(data => {
       this.spo2arr.push({ t: new Date(), y: data.spo2 });
@@ -124,7 +130,6 @@ export class HomePage {
           }
         ]
       };
-      debugger;
       this.ngzone.run(() => {
         this.spo2 = data.spo2;
         this.heartrate = data.pulse;
@@ -141,7 +146,10 @@ export class HomePage {
                   display: false,
                   scaleLabel: {
                     display: true,
-                    labelString: "Date"
+                    labelString: "Time"
+                  },
+                  ticks: {
+                    display: false //this will remove only the label
                   }
                 }
               ],
@@ -162,5 +170,9 @@ export class HomePage {
         });
       });
     });
+  }
+
+  navToPage(page) {
+    this.navCtrl.push(this.pages[page]);
   }
 }
