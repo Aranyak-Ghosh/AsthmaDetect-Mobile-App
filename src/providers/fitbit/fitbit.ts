@@ -92,27 +92,24 @@ export class FitbitProvider {
         if (await this.checkTokenExpiry()) {
           await this.refreshToken();
         }
-        try {
-          let token = await this.getToken();
 
-          this.http
-            .get(`${this.url}/sleep?token=${token}&date=${date}`)
-            .subscribe(
-              data => {
-                console.log(data);
-                resolve(data);
-              },
-              err => {
-                console.log(err);
-                reject(err);
-              }
-            );
-        } catch (err) {
-          console.log(err);
-          reject(err);
-        }
+        let token = await this.getToken();
+
+        this.http
+          .get(`${this.url}/sleep?token=${token}&date=${date}`)
+          .subscribe(
+            data => {
+              console.log(data);
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+              reject(err);
+            }
+          );
       } catch (err) {
         console.error(err);
+        reject(err);
       }
     });
   }
@@ -139,6 +136,7 @@ export class FitbitProvider {
           );
       } catch (err) {
         console.error(err);
+        reject(err);
       }
     });
   }

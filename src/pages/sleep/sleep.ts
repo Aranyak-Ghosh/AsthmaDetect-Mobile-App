@@ -20,7 +20,7 @@ export class SleepPage {
   @ViewChild("sleepChart")
   sleepChart: ElementRef;
   date: any;
-  type: "string";
+  type: String = "string";
   filterSelected: boolean = false;
   options = {
     from: new Date("January 1, 2018"),
@@ -40,9 +40,8 @@ export class SleepPage {
   }
 
   async submit() {
-    this.date.add(1,'days');
     let data = await this.fitbit.getSleep(
-      this.date.toISOString().split("T")[0]
+      this.date
     );
     console.log(data);
   }
@@ -91,8 +90,4 @@ export class SleepPage {
     });
   }
 
-  onChange(event) {
-    // console.log(event.toISOString());
-    console.log(this.date.toISOString().split("T")[0]);
-  }
 }
