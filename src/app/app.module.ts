@@ -31,6 +31,7 @@ import { RegisterPage } from "../pages/register/register";
 import { SleepPage } from "../pages/sleep/sleep";
 import { SpirometryPage } from "../pages/spirometry/spirometry";
 import { ModalSpiroPage } from "../modals/spiro/spiro";
+import {HeartratePage} from "../pages/heartrate/heartrate";
 
 import { HttpClientModule } from "@angular/common/http";
 import { InAppBrowser } from "@ionic-native/in-app-browser";
@@ -44,7 +45,8 @@ import { VitalProvider } from '../providers/vital/vital';
     HomePage,
     SleepPage,
     SpirometryPage,
-    ModalSpiroPage
+    ModalSpiroPage,
+    HeartratePage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { VitalProvider } from '../providers/vital/vital';
     RegisterPage,
     SleepPage,
     SpirometryPage,
-    ModalSpiroPage
+    ModalSpiroPage,
+    HeartratePage
   ],
   providers: [
     StatusBar,

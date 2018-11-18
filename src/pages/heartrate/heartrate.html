@@ -1,0 +1,44 @@
+<!--
+  Generated template for the HeartratePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar> <ion-title>heartrate</ion-title> </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item (click)="toggleFilter()">
+    <ion-label>
+      <ion-icon name="ios-calendar-outline" padding-left></ion-icon> &nbsp; Pick
+      a Timeline
+    </ion-label>
+    <ion-icon
+      large
+      item-end
+      name="ios-arrow-{{filterSelected ? 'up' : 'down'}}"
+      class="header-arrow"
+    ></ion-icon>
+  </ion-item>
+  <div *ngIf="filterSelected">
+    <ion-calendar
+      [(ngModel)]="date"
+      [options]="options"
+      [type]="type"
+      [format]="'YYYY-MM-DD'"
+    >
+    </ion-calendar>
+    <button ion-button color="danger" (click)="submit()">Submit</button>
+    <ion-item-divider></ion-item-divider>
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      Heart Rate Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #heartratechart padding-right></canvas>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
