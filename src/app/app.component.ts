@@ -49,19 +49,25 @@ export class MyApp {
       });
 
       statusBar.styleDefault();
-      this.rootPage = HomePage;
-      // this.auth.autoLogin().then(data => {
-      //   splashScreen.hide();
-      //   if (data) {
-      //     this.rootPage = HomePage;
-      //   } else {
-      //     this.rootPage = LoginPage;
-      //   }
-      // }).catch(err => {
-      //   console.log(err);
-      //   splashScreen.hide();
-      //   this.utilService.showAlertBasic('Error', 'Unable to reach server! Try again later');
-      // })
+      // this.rootPage = LoginPage;
+      this.auth
+        .autoLogin()
+        .then(data => {
+          splashScreen.hide();
+          if (data) {
+            this.rootPage = HomePage;
+          } else {
+            this.rootPage = LoginPage;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          splashScreen.hide();
+          this.utilService.showAlertBasic(
+            "Error",
+            "Unable to reach server! Try again later"
+          );
+        });
 
       diagnostics
         .getBluetoothState()

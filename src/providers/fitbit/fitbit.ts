@@ -10,7 +10,8 @@ import { Storage } from "@ionic/storage";
 */
 @Injectable()
 export class FitbitProvider {
-  url: string = "https://sleepy-eyrie-82836.herokuapp.com/fitbit";
+  ip: String = `https://respiconnect.herokuapp.com`;
+  url: string = `${this.ip}/fitbit`;
   token: string;
   tokenDuration: number = 28800 * 100;
   constructor(public http: HttpClient, private storage: Storage) {
@@ -77,7 +78,23 @@ export class FitbitProvider {
             await this.storage.set("refreshToken", data.refresh_token);
             let expiry = Date.now() + data.expires_in * 100;
             await this.storage.set("TokenExpiry", expiry);
-            resolve(true);
+            let headers = new HttpHeaders();
+            headers.append("Content-Type", "application/x-www-form-urlencoded");
+            this.http
+              .post(
+                `${this.url}/saveToken`,
+                {
+                  fitbitToken: data.access_token,
+                  fitbitRefreshToken: data.refresh_token
+                },
+                {
+                  headers: headers
+                }
+              )
+              .subscribe(data => {
+                if (data === "Stored") resolve(true);
+                else resolve(false);
+              });
           } catch (err) {
             console.log(err);
           }

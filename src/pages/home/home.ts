@@ -95,6 +95,7 @@ export class HomePage {
     let token;
     try {
       token = await this.fitbit.getToken();
+
       if (token == null) {
         let data: any = await this.fitbit.getAuthURL();
         let win = this.inAppBrowser.create(

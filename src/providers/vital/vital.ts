@@ -11,7 +11,7 @@ import { Storage } from "@ionic/storage";
 */
 @Injectable()
 export class VitalProvider {
-  ip: string = "https://sleepy-eyrie-82836.herokuapp.com";
+  ip: string = `http://192.168.1.108:8080`;
   url: string = `${this.ip}/vitals`;
   constructor(public http: HttpClient, private storage: Storage) {
     console.log("Hello VitalProvider Provider");

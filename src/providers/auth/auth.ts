@@ -11,7 +11,7 @@ import { UtilServicesProvider } from "../util-services/util-services";
 */
 @Injectable()
 export class AuthProvider {
-  ip: String = `https://sleepy-eyrie-82836.herokuapp.com`;
+  ip: String = `http://192.168.1.108:8080`;
   url: String = `${this.ip}/user`;
   constructor(
     public http: HttpClient,
