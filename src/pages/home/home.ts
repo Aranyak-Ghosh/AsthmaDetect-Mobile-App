@@ -50,14 +50,6 @@ export class HomePage {
     this.labels = new Array<Date>();
     this.vitals = new Array<Number>();
 
-    this.vitals = [10, 12, 13, 14];
-    this.labels = [
-      new Date(11, 11, 2018),
-      new Date(12, 11, 2018),
-      new Date(13, 11, 2018),
-      new Date(14, 11, 2018)
-    ];
-
     this.diagnostic.registerBluetoothStateChangeHandler(state => {
       if (state == this.diagnostic.bluetoothState.POWERED_OFF) {
         this.utilService.showConfirm(

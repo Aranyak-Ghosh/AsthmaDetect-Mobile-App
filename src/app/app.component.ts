@@ -49,7 +49,7 @@ export class MyApp {
       });
 
       statusBar.styleDefault();
-      // this.rootPage = LoginPage;
+      // this.rootPage = SpirometryPage;
       this.auth
         .autoLogin()
         .then(data => {

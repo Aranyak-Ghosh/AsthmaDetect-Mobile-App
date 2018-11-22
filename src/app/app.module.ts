@@ -37,6 +37,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { AuthProvider } from "../providers/auth/auth";
 import { VitalProvider } from '../providers/vital/vital';
+
 @NgModule({
   declarations: [
     MyApp,
