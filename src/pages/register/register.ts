@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
-import { AuthProvider } from '../../providers/auth/auth';
-import { UtilServicesProvider } from '../../providers/util-services/util-services'
+import { AuthProvider } from "../../providers/auth/auth";
+import { UtilServicesProvider } from "../../providers/util-services/util-services";
 /**
  * Generated class for the RegisterPage page.
  *
@@ -11,11 +11,10 @@ import { UtilServicesProvider } from '../../providers/util-services/util-service
  */
 
 @Component({
-  selector: 'page-register',
-  templateUrl: 'register.html',
+  selector: "page-register",
+  templateUrl: "register.html"
 })
 export class RegisterPage {
-
   credentials: any = {
     username: null,
     contactNo: null,
@@ -26,35 +25,41 @@ export class RegisterPage {
     address: null,
     password: null
   };
-  confirmPassword: String;
+  confirmPassword: String = null;
   errMsg: String;
-  constructor(public navCtrl: NavController, private auth: AuthProvider, private util: UtilServicesProvider, public navParams: NavParams) {
-  }
+  constructor(
+    public navCtrl: NavController,
+    private auth: AuthProvider,
+    private util: UtilServicesProvider,
+    public navParams: NavParams
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
+    console.log("ionViewDidLoad RegisterPage");
   }
 
   async register() {
+    debugger;
     if (this.credentials.password == this.confirmPassword) {
-
       try {
         let res = await this.auth.register(this.credentials);
       } catch (err) {
-        if (err == 'userExists') {
-          this.util.showAlertBasic('Error', 'User with given email already exists. Try resetting your password');
-          this.errMsg = 'User with given email already exists. Try resetting your password'
+        if (err == "userExists") {
+          this.util.showAlertBasic(
+            "Error",
+            "User with given email already exists. Try resetting your password"
+          );
+          this.errMsg =
+            "User with given email already exists. Try resetting your password";
+        } else {
+          this.util.showAlertBasic(
+            "Error",
+            "An internal error occured! Try again later"
+          );
+          this.errMsg = "An internal error occured! Try again later";
         }
-        else {
-          this.util.showAlertBasic('Error', 'An internal error occured! Try again later');
-          this.errMsg = 'An internal error occured! Try again later';
-        }
-
       }
-
-    }
-    else
-      this.errMsg = "Passwords do not match";
+    } else this.errMsg = "Passwords do not match";
   }
 
   goToLogin() {

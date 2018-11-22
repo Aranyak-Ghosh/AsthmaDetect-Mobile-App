@@ -5,110 +5,162 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Sign Up</ion-title>
-  </ion-navbar>
-
+  <ion-navbar> <ion-title>Sign Up</ion-title> </ion-navbar>
 </ion-header>
 <ion-content class="register-content" swipeBackEnabled="false" padding>
-
-  <h2 class='err-msg'>{{errMsg}}</h2>
+  <h2 class="err-msg">{{ errMsg }}</h2>
   <div class="register-box">
     <form (ngSubmit)="register()">
       <ion-row>
         <ion-col>
           <ion-list inset>
-
             <ion-item>
-              <ion-label floating>
-                First Name
-              </ion-label>
-              <ion-input type="text" placeholder="First Name" name="fName" [(ngModel)]="credentials.fName" autocorrect="off"
-                required></ion-input>
+              <ion-label floating> First Name </ion-label>
+              <ion-input
+                type="text"
+                placeholder="First Name"
+                name="fName"
+                [(ngModel)]="credentials.firstName"
+                autocorrect="off"
+                required
+              ></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>
-                Last Name
-              </ion-label>
-              <ion-input type="text" placeholder="Last Name" name="lName" [(ngModel)]="credentials.lName" autocorrect="off"
-                required></ion-input>
+              <ion-label floating> Last Name </ion-label>
+              <ion-input
+                type="text"
+                placeholder="Last Name"
+                name="lName"
+                [(ngModel)]="credentials.lastName"
+                autocorrect="off"
+                required
+              ></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>
-                Email
-              </ion-label>
-              <ion-input type="Email" placeholder="Email" name="username" [(ngModel)]="credentials.username"
-                autocorrect="off" autocapitalize="none" required></ion-input>
+              <ion-label floating> Email </ion-label>
+              <ion-input
+                type="Email"
+                placeholder="Email"
+                name="username"
+                [(ngModel)]="credentials.username"
+                autocorrect="off"
+                autocapitalize="none"
+                required
+              ></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>
-                Password
-              </ion-label>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="credentials.password"
-                autocorrect="off" autocapitalize="none" required></ion-input>
+              <ion-label floating> Password </ion-label>
+              <ion-input
+                type="password"
+                placeholder="Password"
+                name="password"
+                [(ngModel)]="credentials.password"
+                autocorrect="off"
+                autocapitalize="none"
+                required
+              ></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>
-                Confirm Password
-              </ion-label>
-              <ion-input type="password" placeholder="Confirm Password" name="confirmpassword" [(ngModel)]="confirmpassword"
-                autocorrect="off" autocapitalize="none" required></ion-input>
+              <ion-label floating> Confirm Password </ion-label>
+              <ion-input
+                type="password"
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                [(ngModel)]="confirmPassword"
+                autocorrect="off"
+                autocapitalize="none"
+                required
+              ></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>
-                Gender
-              </ion-label>
-              <ion-select name="gender" [(ngModel)]="gender">
+              <ion-label floating> Gender </ion-label>
+              <ion-select name="gender" [(ngModel)]="credentials.gender">
                 <ion-option value="f">Female</ion-option>
                 <ion-option value="m">Male</ion-option>
               </ion-select>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>
-                Contact No.
-              </ion-label>
-              <ion-input type="tel" placeholder="Contact No." name="contactNo" [(ngModel)]="credentials.contactNo"
-                autocorrect="off" required></ion-input>
+              <ion-label floating> Contact No. </ion-label>
+              <ion-input
+                type="tel"
+                placeholder="Contact No."
+                name="contactNo"
+                [(ngModel)]="credentials.contactNo"
+                autocorrect="off"
+                required
+              ></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>
-                Age
-              </ion-label>
-              <ion-input type="number" placeholder="Age" name="age" [(ngModel)]="credentials.age" autocorrect="off"
-                required></ion-input>
+              <ion-label floating> Age </ion-label>
+              <ion-input
+                type="number"
+                placeholder="Age"
+                name="age"
+                [(ngModel)]="credentials.age"
+                autocorrect="off"
+                required
+              ></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label floating>
-                Address
-              </ion-label>
-              <ion-input type="text" placeholder="Address" name="address" [(ngModel)]="credentials.address" autocorrect="off"
-                required></ion-input>
+              <ion-label floating> Address </ion-label>
+              <ion-input
+                type="text"
+                placeholder="Address"
+                name="address"
+                [(ngModel)]="credentials.address"
+                autocorrect="off"
+                required
+              ></ion-input>
             </ion-item>
-
           </ion-list>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full [disabled]="!(confirmPassword && credentials.username && credentials.password && credentials.firstName && credentials.lastName && credentials.contactNo && credentials.gender)"
-            type="submit">Register</button>
-          <br>
-          <button ion-button class="submit-btn" type=button full [disabled]="(credentials.username && credentials.password)"
-            (click)="goToLogin()">Login</button>
-          <!-- <button ion-button class="register-btn" block clear (click)="forgotPassword()">Forgot Password</button> -->
+          <button
+            ion-button
+            class="submit-btn"
+            full
+            [disabled]="
+              !(
+                confirmPassword &&
+                credentials.username &&
+                credentials.password &&
+                credentials.firstName &&
+                credentials.lastName &&
+                credentials.contactNo &&
+                credentials.age &&
+                credentials.gender
+              )
+            "
+            type="submit"
+          >
+            Register
+          </button>
+          <br />
+          <button
+            ion-button
+            class="submit-btn"
+            type="button"
+            full
+            (click)="goToLogin()"
+          >
+            Login
+          </button>
+          <!--
+            <button ion-button class="register-btn" block clear (click)="forgotPassword()">Forgot Password</button>
+          -->
         </ion-col>
       </ion-row>
-
     </form>
   </div>
 </ion-content>
