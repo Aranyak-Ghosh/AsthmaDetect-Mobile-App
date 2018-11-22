@@ -9,21 +9,22 @@
 
 <ion-content class="card-background-page">
   <div class="record-box">
+    <ion-item>
+      <ion-label>{{ text }}</ion-label>
+      <ion-toggle [(ngModel)]="copd" (ionChange)="toggleClicked()"></ion-toggle>
+    </ion-item>
     <form (ngSubmit)="submit()">
       <ion-row>
         <ion-col>
           <ion-list inset>
-
-            <ion-item>
-              <ion-input type="number" placeholder="FEV1" name="fev1" [(ngModel)]="record.fev1" required></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-input type="number" placeholder="FVC" name="fvc" [(ngModel)]="record.fvc" required></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-input type="number" placeholder="PEF" name="pef" [(ngModel)]="record.pef" required></ion-input>
+            <ion-item *ngFor="let x of question">
+              <ion-input
+                type="number"
+                placeholder="{{x.placeholder}}"
+                name="{{x.name}}"
+                [(ngModel)]="record[x.name]"
+                required
+              ></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -31,11 +32,18 @@
 
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!(record.fev1 && record.fvc && record.pef)">Submit</button>
-          <br>
+          <button
+            ion-button
+            class="submit-btn"
+            full
+            type="submit"
+            [disabled]="!(record.fev1 && record.fvc && record.pef)"
+          >
+            Submit
+          </button>
+          <br />
         </ion-col>
       </ion-row>
-
     </form>
   </div>
 </ion-content>
