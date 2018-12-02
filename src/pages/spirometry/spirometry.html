@@ -14,6 +14,30 @@
 
 
 <ion-content padding>
+    <ion-item (click)="toggleFilter()">
+        <ion-label>
+          <ion-icon name="ios-calendar-outline" padding-left></ion-icon> &nbsp; Pick
+          a Timeline
+        </ion-label>
+        <ion-icon
+          large
+          item-end
+          name="ios-arrow-{{filterSelected ? 'up' : 'down'}}"
+          class="header-arrow"
+        ></ion-icon>
+      </ion-item>
+      <div *ngIf="filterSelected">
+        <ion-calendar
+          [(ngModel)]="date"
+          [options]="options"
+          (onChange)="onChange($event)"
+          [type]="type"
+          [format]="'YYYY-MM-DD'"
+        >
+        </ion-calendar>
+        <button ion-button color="danger" (click)="submit()">Submit</button>
+        <ion-item-divider></ion-item-divider>
+      </div>
   <ion-card class="chart">
     <ion-card-header>
       Charts
