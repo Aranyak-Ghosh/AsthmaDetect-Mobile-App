@@ -10,7 +10,7 @@ import { Storage } from "@ionic/storage";
 */
 @Injectable()
 export class FitbitProvider {
-  ip: String = `https://respiconnect.herokuapp.com`;
+  ip: String = `http://192.168.1.105:8080`;
   url: string = `${this.ip}/fitbit`;
   token: string;
   tokenDuration: number = 28800 * 100;
