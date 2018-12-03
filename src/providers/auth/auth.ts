@@ -11,7 +11,7 @@ import { UtilServicesProvider } from "../util-services/util-services";
 */
 @Injectable()
 export class AuthProvider {
-  ip: String = `http://192.168.1.108:8080`;
+  ip: String = `http://10.30.148.141:8080`;
   url: String = `${this.ip}/user`;
   constructor(
     public http: HttpClient,
@@ -97,6 +97,19 @@ export class AuthProvider {
             reject(err);
           }
         );
+    });
+  }
+
+  logout() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let resp = await this.storage.remove("AuthToken");
+        console.log(resp);
+        resolve(true);
+      } catch (err) {
+        console.log(err);
+        reject(err);
+      }
     });
   }
 }
