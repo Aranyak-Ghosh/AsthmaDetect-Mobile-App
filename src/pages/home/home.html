@@ -1,22 +1,24 @@
 <ion-header>
   <ion-navbar hideBackButton>
-    <ion-title>
-      RespiConnect
-    </ion-title>
+    <ion-title> RespiConnect </ion-title>
   </ion-navbar>
 </ion-header>
 
-<!-- <ion-content padding>
-  <button (click)='scan()'>Scan</button>
-  <h2 *ngIf="spo2">SPO2: {{spo2}}</h2>
-  <h2 *ngIf="heartrate">Pulse: {{heartrate}}</h2>
-  <button (click)='sleep()'>Get Sleep Data</button>
-</ion-content> -->
+<!--
+  <ion-content padding>
+    <button (click)='scan()'>Scan</button>
+    <h2 *ngIf="spo2">SPO2: {{spo2}}</h2>
+    <h2 *ngIf="heartrate">Pulse: {{heartrate}}</h2>
+    <button (click)='sleep()'>Get Sleep Data</button>
+  </ion-content>
+-->
 
 <ion-content class="card-background-page">
-
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingText="Pull to connect..." refreshingText="Connecting...">
+    <ion-refresher-content
+      pullingText="Pull to connect..."
+      refreshingText="Connecting..."
+    >
     </ion-refresher-content>
   </ion-refresher>
   <div class="row">
@@ -28,46 +30,56 @@
   <div class="row">
     <div class="col text-center dashboard-btn-col">
       <ion-card class="dashboard-card" id="heart-rate">
-        <button class="button button-positive" (click)="navToPage('heartrate')"class="dashboard-btn">
+        <button
+          class="button button-positive"
+          (click)="navToPage('heartrate')"
+          class="dashboard-btn"
+        >
           <img src="/assets/imgs/cardiogram.svg" />
         </button>
-        <h3 class="title vital">{{heartrate}}</h3>
+        <h3 class="title vital">{{ heartrate }}</h3>
         <h3 class="title">Resting Heart Rate</h3>
       </ion-card>
     </div>
     <div class="col text-center dashboard-btn-col right-btn">
-      <ion-card class="dashboard-card" id="he-card" (click)="navToPage('homerescue')">
+      <ion-card
+        class="dashboard-card"
+        id="he-card"
+        (click)="navToPage('homerescue')"
+      >
         <button class="button button-positive" class="dashboard-btn">
           <img src="assets/imgs/oximeter.png" />
         </button>
-        <h3 class="title vital">{{spo2}}</h3>
+        <h3 class="title vital">{{ spo2 }}</h3>
         <h3 class="title">Blood Oxygen Level</h3>
       </ion-card>
     </div>
-
   </div>
 
-
   <ion-content class="card-background-page">
-
     <div class="row">
-      <div class="col text-center dashboard-btn-col">
-        <ion-card class="dashboard-card" id="heart-rate">
-          <button class="button button-positive" class="dashboard-btn" (click)="navToPage('sleep')">
-            <img src="/assets/imgs/bed.svg" />
-          </button>
-          <h3 class="title">Sleep Statistics</h3>
-        </ion-card>
-      </div>
+      <!--
+        <div class="col text-center dashboard-btn-col">
+          <ion-card class="dashboard-card" id="heart-rate">
+            <button class="button button-positive" class="dashboard-btn" (click)="navToPage('sleep')">
+              <img src="/assets/imgs/bed.svg" />
+            </button>
+            <h3 class="title">Sleep Statistics</h3>
+          </ion-card>
+        </div>
+      -->
       <div class="col text-center dashboard-btn-col right-btn">
         <ion-card class="dashboard-card" id="he-card">
-          <button class="button button-positive" class="dashboard-btn" (click)="navToPage('spirometry')">
+          <button
+            class="button button-positive"
+            class="dashboard-btn"
+            (click)="navToPage('spirometry')"
+          >
             <img src="assets/imgs/lungs.svg" />
           </button>
           <h3 class="title">Spirometry</h3>
         </ion-card>
       </div>
-
     </div>
-    <br>
-  </ion-content>
+    <br /> </ion-content
+></ion-content>
