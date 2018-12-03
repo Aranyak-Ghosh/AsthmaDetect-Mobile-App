@@ -55,31 +55,71 @@
       </ion-card>
     </div>
   </div>
-
-  <ion-content class="card-background-page">
-    <div class="row">
-      <!--
-        <div class="col text-center dashboard-btn-col">
-          <ion-card class="dashboard-card" id="heart-rate">
-            <button class="button button-positive" class="dashboard-btn" (click)="navToPage('sleep')">
-              <img src="/assets/imgs/bed.svg" />
-            </button>
-            <h3 class="title">Sleep Statistics</h3>
-          </ion-card>
-        </div>
-      -->
-      <div class="col text-center dashboard-btn-col right-btn">
-        <ion-card class="dashboard-card" id="he-card">
-          <button
-            class="button button-positive"
-            class="dashboard-btn"
-            (click)="navToPage('spirometry')"
-          >
-            <img src="assets/imgs/lungs.svg" />
+  <div class="row">
+    <!--
+      <div class="col text-center dashboard-btn-col">
+        <ion-card class="dashboard-card" id="heart-rate">
+          <button class="button button-positive" class="dashboard-btn" (click)="navToPage('sleep')">
+            <img src="/assets/imgs/bed.svg" />
           </button>
-          <h3 class="title">Spirometry</h3>
+          <h3 class="title">Sleep Statistics</h3>
         </ion-card>
       </div>
+    -->
+    <div class="col text-center dashboard-btn-col">
+      <ion-card
+        class="dashboard-card"
+        id="spirometry-card"
+        (click)="navToPage('spirometry')"
+      >
+        <div class="row">
+          <ion-col width-50>
+            <button class="button button-positive" class="dashboard-btn">
+              <img
+                src="assets/imgs/lungs.svg"
+                style="max-width: 50%;float:left;margin-left:1em"
+              />
+            </button>
+          </ion-col>
+          <ion-col width-50 class="v-align-text">
+            <h3 class="dashboard-title" style="margin-left:5rem">Spirometry</h3>
+          </ion-col>
+        </div>
+      </ion-card>
     </div>
-    <br /> </ion-content
-></ion-content>
+  </div>
+  <div class="row">
+    <!--
+      <div class="col text-center dashboard-btn-col">
+        <ion-card class="dashboard-card" id="heart-rate">
+          <button class="button button-positive" class="dashboard-btn" (click)="navToPage('sleep')">
+            <img src="/assets/imgs/bed.svg" />
+          </button>
+          <h3 class="title">Sleep Statistics</h3>
+        </ion-card>
+      </div>
+    -->
+    <div class="col text-center dashboard-btn-col">
+      <ion-card
+        class="dashboard-card"
+        id="spirometry-card"
+        (click)="logout()"
+      >
+        <div class="row">
+          <ion-col width-50>
+            <button
+              class="button button-positive"
+              class="dashboard-btn"
+            ><img
+            src="assets/imgs/logout.png"
+            style="max-width: 50%;float:left;margin-left:1em"
+          /></button>
+          </ion-col>
+          <ion-col width-50 class="v-align-text">
+            <h3 class="dashboard-title" style="margin-left:5rem">Logout</h3>
+          </ion-col>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

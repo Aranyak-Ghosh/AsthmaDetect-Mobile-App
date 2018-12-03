@@ -4,9 +4,11 @@ import { Diagnostic } from "@ionic-native/diagnostic";
 
 import { Nonin3230Provider } from "../../providers/nonin3230/nonin3230";
 import { FitbitProvider } from "../../providers/fitbit/fitbit";
+import { AuthProvider } from "../../providers/auth/auth";
+import { UtilServicesProvider } from "../../providers/util-services/util-services";
+
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { Platform } from "ionic-angular";
-import { UtilServicesProvider } from "../../providers/util-services/util-services";
 import { Chart } from "chart.js";
 
 import { SleepPage } from "../sleep/sleep";
@@ -40,6 +42,7 @@ export class HomePage {
     private ngzone: NgZone,
     private inAppBrowser: InAppBrowser,
     private fitbit: FitbitProvider,
+    private auth: AuthProvider,
     private diagnostic: Diagnostic,
     private utilService: UtilServicesProvider,
     private platform: Platform
@@ -163,6 +166,16 @@ export class HomePage {
         });
       });
     });
+  }
+
+  async logout() {
+    let success = await this.auth.logout();
+    if (success) this.navCtrl.popToRoot();
+    else
+      this.utilService.showAlertBasic(
+        "Error",
+        "There was an error logging you out! Try Again Later."
+      );
   }
 
   navToPage(page) {
