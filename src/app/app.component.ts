@@ -7,8 +7,6 @@ import { Diagnostic } from "@ionic-native/diagnostic";
 
 import { HomePage } from "../pages/home/home";
 import { LoginPage } from "../pages/login/login";
-import { SleepPage } from "../pages/sleep/sleep";
-import { SpirometryPage } from "../pages/spirometry/spirometry";
 
 import { AuthProvider } from "../providers/auth/auth";
 import { UtilServicesProvider } from "../providers/util-services/util-services";
@@ -49,7 +47,6 @@ export class MyApp {
       });
 
       statusBar.styleDefault();
-      // this.rootPage = SpirometryPage;
       this.auth
         .autoLogin()
         .then(data => {
