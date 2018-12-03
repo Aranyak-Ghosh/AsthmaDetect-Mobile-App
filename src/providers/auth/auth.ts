@@ -11,7 +11,7 @@ import { UtilServicesProvider } from "../util-services/util-services";
 */
 @Injectable()
 export class AuthProvider {
-  ip: String = `http://192.168.1.105:8080`;
+  ip: String = `http://192.168.1.108:8080`;
   url: String = `${this.ip}/user`;
   constructor(
     public http: HttpClient,
@@ -83,13 +83,14 @@ export class AuthProvider {
   register(data) {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders();
+
       headers.append("Content-Type", "application/x-www-form-urlencoded");
       this.http
         .post(`${this.url}/signUp`, data, { headers: headers })
         .subscribe(
           (data: any) => {
-            if (data==='registered') resolve(true);
-            else if (data== "UserExistsError") reject("userExists");
+            if (data.msg == "registered") resolve(true);
+            else if (data.msg == "UserExistsError") reject("userExists");
           },
           err => {
             console.log(err);
@@ -98,6 +99,4 @@ export class AuthProvider {
         );
     });
   }
-
- 
 }

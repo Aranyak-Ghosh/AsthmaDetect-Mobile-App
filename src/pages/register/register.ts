@@ -39,10 +39,11 @@ export class RegisterPage {
   }
 
   async register() {
-    debugger;
     if (this.credentials.password == this.confirmPassword) {
       try {
         let res = await this.auth.register(this.credentials);
+        if (res)
+          this.util.showAlertBasic("Success", "User Registered Successfully");
       } catch (err) {
         if (err == "userExists") {
           this.util.showAlertBasic(
@@ -59,7 +60,10 @@ export class RegisterPage {
           this.errMsg = "An internal error occured! Try again later";
         }
       }
-    } else this.errMsg = "Passwords do not match";
+    } else {
+      this.errMsg = "Passwords do not match";
+      this.util.showAlertBasic("Error", "Passwords provided do not match");
+    }
   }
 
   goToLogin() {
