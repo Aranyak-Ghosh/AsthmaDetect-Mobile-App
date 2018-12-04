@@ -50,13 +50,12 @@ export class VitalProvider {
   /**
    * Retireve Vitals
    */
-  retrieveVitals(type) {
+  retrieveVitals() {
     return new Promise(async (resolve, reject) => {
       let headers = new HttpHeaders();
       headers.append("Content-Type", "application/x-www-form-urlencoded");
       let body = {
-        token: await this.storage.get("AuthToken"),
-        type: type
+        token: await this.storage.get("AuthToken")
       };
       this.http.post(`${this.url}/get`, body, { headers: headers }).subscribe(
         data => {
