@@ -179,6 +179,7 @@ export class HomePage {
   }
 
   navToPage(page) {
+    this.utilService.showLoader();
     this.navCtrl.push(this.pages[page]);
   }
 }

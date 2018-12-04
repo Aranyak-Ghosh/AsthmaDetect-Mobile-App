@@ -41,6 +41,7 @@ export class HeartratePage {
   }
 
   ionViewDidLoad() {
+    this.util.dismissLoader();
     console.log("ionViewDidLoad HeartratePage");
   }
 
