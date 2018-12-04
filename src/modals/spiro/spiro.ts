@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { NavController, NavParams, ViewController } from "ionic-angular";
 
 import { VitalProvider } from "../../providers/vital/vital";
+import { UtilServicesProvider } from "../../providers/util-services/util-services";
+
 @Component({
   selector: "modal-spiro",
   templateUrl: "spiro.html"
@@ -12,49 +14,49 @@ export class ModalSpiroPage {
   copd: boolean;
   question: any;
   record = {
-    fev1: null,
-    fvc: null,
-    pef: null,
-    fef2575: null
+    FEV1: null,
+    FVC: null,
+    PEF: null,
+    FEF: null
   };
   copdQ: any = [
     {
       placeholder: "FEV1",
-      name: "fev1",
-      model: "record.fev1"
+      name: "FEV1",
+      model: "record.FEV1"
     },
     {
       placeholder: "FVC",
-      name: "fvc",
-      model: "record.fvc"
+      name: "FVC",
+      model: "record.FVC"
     },
     {
       placeholder: "PEF",
-      name: "pef",
-      model: "record.pef"
+      name: "PEF",
+      model: "record.PEF"
     }
   ];
 
   asthmaQ: any = [
     {
       placeholder: "FEV1",
-      name: "fev1",
-      model: "record.fev1"
+      name: "FEV1",
+      model: "record.FEV1"
     },
     {
       placeholder: "FVC",
-      name: "fvc",
-      model: "record.fvc"
+      name: "FVC",
+      model: "record.FVC"
     },
     {
       placeholder: "PEF",
-      name: "pef",
-      model: "record.pef"
+      name: "PEF",
+      model: "record.PEF"
     },
     {
       placeholder: "FEF 25-75",
-      name: "fef2575",
-      model: "record.fef2575"
+      name: "FEF",
+      model: "record.FEF"
     }
   ];
 
@@ -62,7 +64,8 @@ export class ModalSpiroPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl: ViewController,
-    private vital: VitalProvider
+    private vital: VitalProvider,
+    private util: UtilServicesProvider
   ) {
     this.copd = false;
     this.text = "Ashtma";
@@ -74,6 +77,7 @@ export class ModalSpiroPage {
   }
 
   toggleClicked() {
+    // debugger
     if (this.copd) {
       this.text = "COPD";
       this.question = this.copdQ;
@@ -85,10 +89,30 @@ export class ModalSpiroPage {
 
   async submit() {
     console.log(this.record);
+    this.util.showLoader("Submitting Vitals");
     try {
-      if (await this.vital.submitVital(this.record)) this.viewCtrl.dismiss();
+      let severity = await this.vital.submitVital(this.record);
+      this.util.dismissLoader();
+      if (severity == "Stored") {
+        this.util.showToast("Value Recorded");
+        this.viewCtrl.dismiss();
+      } else {
+        this.util.showAlert(
+          "Severity",
+          `Asthma Severity: ${severity}`,
+          "Dismiss",
+          () => {
+            this.viewCtrl.dismiss();
+          }
+        );
+      }
     } catch (err) {
+      this.util.dismissLoader();
       console.log(err);
+      this.util.showAlertBasic(
+        "Error",
+        "An error occured while submitting the values! Try again later."
+      );
     }
   }
 }
