@@ -32,16 +32,11 @@
           <ion-option value="FEF">FEF 25-75%</ion-option>
         </ion-select>
       </ion-item>
-      <ion-item>
-        <button ion-button color="danger" (click)="submit()">Submit</button>
-      </ion-item>
     </div>
   </ion-list>
   <ion-card class="chart">
     <ion-card-header> Charts </ion-card-header>
-    <ion-card-content>
-      Slider which shows FEV and FEV1 charts
-    </ion-card-content>
+    <canvas #spiroChart padding-bottom padding-right></canvas>
   </ion-card>
   <div class="row">
     <div class="col text-center dashboard-btn-col">
