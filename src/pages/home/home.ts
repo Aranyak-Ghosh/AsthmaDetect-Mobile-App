@@ -79,7 +79,7 @@ export class HomePage {
 
   doRefresh(refresher) {
     this.scan();
-    setTimeout(refresher.complete(), 1000);
+    setTimeout(refresher.complete(), 3000);
   }
 
   ionViewDidLoad() {
