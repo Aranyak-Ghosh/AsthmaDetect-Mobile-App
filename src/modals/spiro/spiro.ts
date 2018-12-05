@@ -91,21 +91,10 @@ export class ModalSpiroPage {
     console.log(this.record);
     this.util.showLoader("Submitting Vitals");
     try {
-      let severity = await this.vital.submitVital(this.record);
+      let msg = await this.vital.submitVital(this.record);
       this.util.dismissLoader();
-      if (severity == "Stored") {
-        this.util.showToast("Value Recorded");
-        this.viewCtrl.dismiss();
-      } else {
-        this.util.showAlert(
-          "Severity",
-          `Asthma Severity: ${severity}`,
-          "Dismiss",
-          () => {
-            this.viewCtrl.dismiss();
-          }
-        );
-      }
+      this.util.showToast("Value Recorded");
+      this.viewCtrl.dismiss();
     } catch (err) {
       this.util.dismissLoader();
       console.log(err);
