@@ -21,6 +21,7 @@ import { UtilServicesProvider } from "../../providers/util-services/util-service
 export class SpirometryPage {
   filterSelected: boolean = false;
   data: any;
+  severity: any;
   @ViewChild("spiroChart") chart: ElementRef;
   graph: any;
   constructor(
@@ -36,6 +37,7 @@ export class SpirometryPage {
   async deffered() {
     try {
       this.data = await this.vital.retrieveVitals();
+      this.severity = await this.vital.retrieveSeverity();
       this.util.dismissLoader();
     } catch (err) {
       console.log(err);
@@ -52,27 +54,46 @@ export class SpirometryPage {
     this.filterSelected = !this.filterSelected;
   }
 
+  async doRefresh(refresher) {
+    try {
+      this.data = await this.vital.retrieveVitals();
+      this.severity = await this.vital.retrieveSeverity();
+      refresher.complete();
+    } catch (err) {
+      console.log(err);
+      this.util.showAlertBasic("Error", "Could not contact server!");
+    }
+  }
+
   updateChart(vital) {
     console.log(vital);
     let labels = [];
     let vals = [];
-    this.data.forEach(element => {
-      if (element.value[vital]) {
+    if (vital != "Severity") {
+      this.data.forEach(element => {
+        if (element.value[vital]) {
+          labels.push(element.time);
+          vals.push(element.value[vital]);
+        }
+      });
+    } else {
+      this.severity.forEach(element => {
         labels.push(element.time);
-        vals.push(element.value[vital]);
-      }
-    });
-
+        vals.push(element.severity);
+      });
+    }
+    debugger;
     let op = {
+      yLabels: ["Severe", "Moderate", "Mild", "Normal", ""],
       labels: labels,
+
       datasets: [
         {
           fill: false,
           data: vals,
           label: vital,
-          borderColor: "#fe8b36",
-          backgroundColor: "#fe8b36",
-          lineTension: 0
+          borderColor: "#ef6464",
+          backgroundColor: "#ef6464"
         }
       ]
     };
@@ -83,7 +104,6 @@ export class SpirometryPage {
           type: "line",
           data: op,
           options: {
-            fill: false,
             responsive: true,
             scales: {
               xAxes: [
@@ -97,6 +117,7 @@ export class SpirometryPage {
               ],
               yAxes: [
                 {
+                  type: "category",
                   display: true,
                   scaleLabel: {
                     display: true,

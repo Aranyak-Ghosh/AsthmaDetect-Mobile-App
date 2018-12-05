@@ -9,6 +9,13 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="Pull to refresh..."
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <ion-item no-lines (click)="toggleFilter()">
       <ion-label>
@@ -30,6 +37,7 @@
           <ion-option value="FVC">FVC</ion-option>
           <ion-option value="PEF">PEF</ion-option>
           <ion-option value="FEF">FEF 25-75%</ion-option>
+          <ion-option value="Severity">Severity</ion-option>
         </ion-select>
       </ion-item>
     </div>
