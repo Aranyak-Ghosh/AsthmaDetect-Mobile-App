@@ -57,15 +57,41 @@ export class VitalProvider {
       let body = {
         token: await this.storage.get("AuthToken")
       };
-      this.http.post(`${this.url}/get`, body, { headers: headers }).subscribe(
-        data => {
-          if (data) resolve(data);
-        },
-        err => {
-          console.log(err);
-          reject(err);
-        }
-      );
+      this.http
+        .post(`${this.url}/getVitals`, body, { headers: headers })
+        .subscribe(
+          data => {
+            if (data) resolve(data);
+          },
+          err => {
+            console.log(err);
+            reject(err);
+          }
+        );
+    });
+  }
+
+  /**
+   * Retrieve Severity
+   */
+  retrieveSeverity() {
+    return new Promise(async (resolve, reject) => {
+      let headers = new HttpHeaders();
+      headers.append("Content-Type", "application/x-www-form-urlencoded");
+      let body = {
+        token: await this.storage.get("AuthToken")
+      };
+      this.http
+        .post(`${this.url}/getSeverity`, body, { headers: headers })
+        .subscribe(
+          data => {
+            if (data) resolve(data);
+          },
+          err => {
+            console.log(err);
+            reject(err);
+          }
+        );
     });
   }
 }
